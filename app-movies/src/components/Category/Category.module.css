@@ -9,7 +9,8 @@
         gap: 1rem;
     }
 
-    h1 {
+    h2 {
+        font-size: 2rem;
         padding-block: 1.5rem;
     }
 }

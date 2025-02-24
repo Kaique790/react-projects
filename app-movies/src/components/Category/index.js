@@ -16,7 +16,7 @@ export function filterCategory(id) {
 function Category({ category, children }) {
   return (
     <section className={styles.category}>
-      <h1>{category}</h1>
+      <h2>{category}</h2>
       <div>{children}</div>
     </section>
   );
