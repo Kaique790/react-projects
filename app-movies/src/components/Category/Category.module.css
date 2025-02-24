@@ -1,0 +1,15 @@
+.category {
+    display: flex;
+    flex-direction: column;
+
+    div {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    h1 {
+        padding-block: 1.5rem;
+    }
+}
