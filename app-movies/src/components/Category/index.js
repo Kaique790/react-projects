@@ -9,8 +9,8 @@ export const categories = [
   "Geologia e Hidrografia",
 ];
 
-export function filterCategory(id) {
-  return videos.filter((video) => video.category === categories[id]);
+export function filterCategory(index) {
+  return videos.filter((video) => video.category === categories[index]);
 }
 
 function Category({ category, children }) {

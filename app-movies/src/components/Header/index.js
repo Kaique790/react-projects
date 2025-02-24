@@ -13,7 +13,10 @@ function Header() {
                     Inicio
                 </Link>
                 <Link to="/watch">
-                   assistir
+                   Assistir
+                </Link>
+                <Link to="/search">
+                   Buscar
                 </Link>
             </nav>
         </header>

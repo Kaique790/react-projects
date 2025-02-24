@@ -6,6 +6,7 @@ import Card from "../../components/Card";
 import Category, { categories, filterCategory } from "../../components/Category";
 
 function Home() {
+
   return (
     <>
       <Header />
