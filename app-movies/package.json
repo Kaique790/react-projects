@@ -3,23 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/plugin-transform-async-generator-functions": "^7.26.8",
-    "@babel/plugin-transform-class-properties": "^7.25.9",
-    "@babel/plugin-transform-json-strings": "^7.25.9",
-    "@babel/plugin-transform-nullish-coalescing-operator": "^7.26.6",
-    "@babel/plugin-transform-numeric-separator": "^7.25.9",
-    "@babel/plugin-transform-object-rest-spread": "^7.25.9",
-    "@babel/plugin-transform-optional-chaining": "^7.25.9",
-    "@babel/plugin-transform-unicode-property-regex": "^7.25.9",
+    "@babel/eslint-parser": "^7.23.0",
     "@testing-library/react": "^16.2.0",
-    "core-js": "^3.40.0",
-    "eslint": "^8.57.1",
-    "eslint-config-react-app": "^7.0.1",
+    "axios": "^1.6.2",
+    "core-js": "^3.30.0",
+    "eta": "^2.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",
     "react-scripts": "^5.0.1",
-    "uuid": "^11.1.0"
+    "react-slick": "^0.30.3",
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,6 +22,13 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "requireConfigFile": false,
+      "babelOptions": {
+        "presets": ["@babel/preset-env", "@babel/preset-react"]
+      }
+    },
     "extends": [
       "react-app",
       "react-app/jest"
@@ -46,9 +47,18 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-transform-async-generator-functions": "^7.26.8",
+    "@babel/plugin-transform-class-properties": "^7.25.9",
+    "@babel/plugin-transform-json-strings": "^7.25.9",
+    "@babel/plugin-transform-nullish-coalescing-operator": "^7.26.6",
+    "@babel/plugin-transform-numeric-separator": "^7.25.9",
+    "@babel/plugin-transform-object-rest-spread": "^7.25.9",
+    "@babel/plugin-transform-optional-chaining": "^7.25.9",
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
+    "@babel/plugin-transform-unicode-property-regex": "^7.25.9",
     "@jridgewell/sourcemap-codec": "^1.5.0",
     "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.57.0",
     "eslint-webpack-plugin": "^4.2.0"
   }
 }
