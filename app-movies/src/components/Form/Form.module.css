@@ -55,3 +55,15 @@
 .container button:hover {
   background-color: #f44336;
 }
+
+.container .errors {
+  background-color: #b71c1c;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  padding: 24px 28px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  margin-top: 0.5rem;
+}
