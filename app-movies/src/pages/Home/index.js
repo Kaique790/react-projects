@@ -1,7 +1,7 @@
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Banner from "../../components/Banner";
-import Container from "../../../src/components/Container";
+// import Container from "../../../src/components/Container";
 import Card from "../../components/Card";
 import Carousel from "../../components/Carousel";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
@@ -24,7 +24,7 @@ function Home() {
       <Header />
       <ScrollToTopButton />
       <Banner image="home" />
-      <Container>
+      <section>
       {loading ? (
         <Loader />
         ) : (
@@ -38,7 +38,7 @@ function Home() {
             </Category>
           ))
         )}
-      </Container>
+      </section>
       <Footer />
     </>
   );
