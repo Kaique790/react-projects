@@ -13,7 +13,11 @@
     "react-router-dom": "^7.2.0",
     "react-scripts": "^5.0.1",
     "react-slick": "^0.30.3",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "@jridgewell/sourcemap-codec": "^1.5.0",
+    "@rollup/plugin-terser": "^0.4.4",
+    "lru-cache": "^7.14.1",
+    "glob": "^9.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -56,8 +60,6 @@
     "@babel/plugin-transform-optional-chaining": "^7.25.9",
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
     "@babel/plugin-transform-unicode-property-regex": "^7.25.9",
-    "@jridgewell/sourcemap-codec": "^1.5.0",
-    "@rollup/plugin-terser": "^0.4.4",
     "eslint": "^8.57.0",
     "eslint-webpack-plugin": "^4.2.0"
   }
