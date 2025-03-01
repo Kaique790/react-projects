@@ -1,6 +1,6 @@
 import Header from '../../components/Header';  
 import Footer from '../../components/Footer';
-import Container from '../../components/Container';
+import Container from 'components/Container';
 import styles from './Search.module.css';
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 import videos from '../../json/videos.json';
