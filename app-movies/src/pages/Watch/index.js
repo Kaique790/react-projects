@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import Container from "../../components/Container";
+import Container from "../../../src/components/Container";
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
 import styles from "./Watch.module.css";
@@ -23,11 +23,11 @@ function Watch() {
             height="480"
             src={`https://www.youtube.com/embed/${video.id}`}
             title="YouTube video player"
-            frameborder="0"
+            style={{ border: "none" }}
             allow="accelerometer; autoplay; clipboard-write;
             encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
           ></iframe>
         </section>
       </Container>
