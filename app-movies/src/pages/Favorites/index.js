@@ -1,4 +1,4 @@
-import Container from "../../components/Container";
+import Container from "components/Container";
 import Footer from "../../components/Footer";
 import VideoList from "../../components/VideoList";
 import Header from "../../components/Header";

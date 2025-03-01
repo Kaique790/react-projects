@@ -1,5 +1,5 @@
 import Header from "../../components/Header";
-import Container from "../../../src/components/Container";
+import Container from "components/Container";
 import Banner from "../../components/Banner";
 import Footer from "../../components/Footer";
 import styles from "./Watch.module.css";
