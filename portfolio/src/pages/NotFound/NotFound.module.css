@@ -1,0 +1,21 @@
+.title2 {
+    padding-top: 2rem;
+    font-size: 1.5rem;
+}
+
+.texts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .big_text, .red_text {
+        font-size: 18.75rem;
+        color: var(--red);
+        font-weight: bold;
+    }
+
+    .red_text {
+        font-size: 1.25rem;
+    }
+}

@@ -1,9 +1,11 @@
 import "./App.css";
+import Home from "./pages/Home";
+import AppRoutes from "./routes";
 
 function App() {
   return (
     <>
-      <h1>Hello, World!</h1>
+      <AppRoutes />
     </>
   );
 }
