@@ -1,10 +1,28 @@
+import { useState } from "react";
+import { Avatar } from "./Avatar";
 import styles from "./Comment.module.css";
 import { ThumbsUp, Trash } from "phosphor-react";
 
-export function Comment() {
+export function Comment({ content, onDeleteComment }) {
+  const [likeCount, setLikeCount] = useState(0);
+
+  function handleDeleteComment() {
+    onDeleteComment(content);
+  }
+
+  function handleAddLike() {
+    setLikeCount((current) => current + 1);
+    // setLikeCount((current) => current + 1);
+    // setLikeCount((current) => current + 1);
+    // setLikeCount((current) => current + 1);
+  }
+
   return (
     <div className={styles.comment}>
-      <img src="https://images.unsplash.com/photo-1512572525676-f9b59951929e?q=50&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+      <Avatar
+        hasBorder={false}
+        src="https://images.unsplash.com/photo-1512572525676-f9b59951929e?q=50&w=500&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      />
 
       <div className={styles.commentBox}>
         <div className={styles.commentContent}>
@@ -15,19 +33,19 @@ export function Comment() {
               </time>
             </div>
 
-            <button title="Deletar Comentário" >
-                <Trash size={24} />
+            <button onClick={handleDeleteComment} title="Deletar Comentário">
+              <Trash size={24} />
             </button>
           </header>
 
-          <p>Muito bom, Devo. Parabéns 👏</p>
+          <p>{content}</p>
         </div>
 
         <footer>
-            <button>
-                <ThumbsUp />
-                Aplaudir <span>20</span>
-            </button>
+          <button onClick={handleAddLike}>
+            <ThumbsUp />
+            Aplaudir <span>{likeCount}</span>
+          </button>
         </footer>
       </div>
     </div>
