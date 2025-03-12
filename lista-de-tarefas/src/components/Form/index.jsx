@@ -1,48 +1,35 @@
-import { useState, useEffect } from "react";
-import styles from "./Form.module.css";
-import tasksJson from "../../data/tasks.json";
+import { PaperPlaneTilt } from "@phosphor-icons/react";
+import { useState } from "react";
 
-export default function Form() {
-  const [newTask, setNewTask] = useState("");
-  const [tasks, setTasks] = useState(() => {
-    const savedTasks = localStorage.getItem("tasks");
-    return savedTasks ? JSON.parse(savedTasks) : [...tasksJson];
-  });
+export function Form({ functionAddNewTask }) {
+  const [newTaskName, setNewtaskName] = useState("");
 
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
-
-  function formSubmit(event) {
-    event.preventDefault();
-
-    const task = {
-      id: Date.now(),
-      taskName: newTask,
-      isCompleted: false
-    };
-
-    const updatedTasks = [...tasks, task];
-    setTasks(updatedTasks);
-
-    setNewTask("");
+  function handleSetNewTaskName(event) {
+    setNewtaskName(event.target.value);
+    console.log(event.target.value)
   }
 
   return (
-    <form className={styles.form} onSubmit={formSubmit}>
-      <h1>Liste suas tarefas</h1>
-      <div>
-        <label htmlFor="task">Nome da tarefa:</label>
+    <form className="flex flex-col justify-center">
+      <div className="text-center">
+        <label htmlFor="task-name">Nome da tarefa:</label>
         <input
+          value={newTaskName}
+          onChange={handleSetNewTaskName}
           type="text"
-          id="task"
-          required
-          value={newTask}
-          onChange={(event) => setNewTask(event.target.value)}
+          id="task-name"
+          className="bg-[#242424] p-1 opacity-30 my-5 w-full rounded-md"
         />
       </div>
 
-      <button type="submit">Enviar</button>
+      <button
+        onClick={() => functionAddNewTask(newTaskName)}
+        type="submit"
+        className="bg-green-600 text-[1rem] items-center flex justify-center gap-3 p-3 px-6 rounded-md duration-300 cursor-pointer hover:bg-green-500"
+      >
+        ADICIONAR
+        <PaperPlaneTilt size={20} />
+      </button>
     </form>
   );
 }
