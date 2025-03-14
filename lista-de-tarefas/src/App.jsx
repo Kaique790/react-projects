@@ -6,8 +6,6 @@ import { Task } from "./components/Task";
 function App() {
   const [tasks, setTasks] = useState([
     { id: window.crypto.randomUUID(), name: "Comprar frutas" },
-    { id: window.crypto.randomUUID(), name: "Responder e-mails" },
-    { id: window.crypto.randomUUID(), name: "Estudar JavaScript" },
   ]);
 
   function handleAddNewTask(taskId) {
@@ -20,9 +18,12 @@ function App() {
     setTasks(newTasks);
   }
 
-  function handleEditTask (taskId) {
-    const task = tasks.find((task) => task.id === taskId);
+  function handleEditTask(taskId, newTaskName) {
+    const updateTask = tasks.map((task) => {
+      return task.id === taskId ? { ...task, name: newTaskName } : task;
+    });
 
+    setTasks(updateTask);
   }
 
   return (
@@ -36,6 +37,7 @@ function App() {
           {tasks.map(({ name, id }) => {
             return (
               <Task
+                handleEditTask={handleEditTask}
                 onDeleteTask={handleDeleteTask}
                 taskName={name}
                 key={id}

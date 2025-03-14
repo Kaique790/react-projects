@@ -2,11 +2,19 @@ import { useState } from "react";
 import { Button } from "../Button";
 import { SignOut } from "@phosphor-icons/react";
 
-export function EditTask({ active = true, taskName, onEditTask }) {
+export function EditTask({ active = true, taskName, onEditTask, handleEditTask, taskId }) {
   const [newTaskName, setNewTaskName] = useState(taskName);
 
   function handleInputName(event) {
     setNewTaskName(event.target.value);
+  }
+
+   function handleFormSubmit(event) {
+    event.preventDefault();
+
+    handleEditTask(taskId, newTaskName);
+
+    onEditTask();
   }
 
   return (
@@ -17,7 +25,7 @@ export function EditTask({ active = true, taskName, onEditTask }) {
     >
 
 
-      <form className="max-w-80 bg-white p-8 rounded-md">
+      <form onSubmit={handleFormSubmit} className="max-w-80 bg-white p-8 rounded-md">
         <button className="ml-auto block" type="button" onClick={onEditTask}>
          <SignOut size={40} className="text-[#323232] p-1 rounded-4xl cursor-pointer duration-300 hover:bg-[#32323233]"/>
         </button>

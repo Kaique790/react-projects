@@ -2,7 +2,7 @@ import { PencilSimpleLine, Trash } from "@phosphor-icons/react";
 import { useState } from "react";
 import { EditTask } from "../EditTask";
 
-export function Task({ taskName, onDeleteTask, taskId }) {
+export function Task({ taskName, onDeleteTask, taskId, handleEditTask }) {
   const [completed, setCompleted] = useState(false);
   const [edit, setEdit] = useState(false);
 
@@ -10,7 +10,7 @@ export function Task({ taskName, onDeleteTask, taskId }) {
     setCompleted(!completed);
   }
 
-  function onEditTask () {
+  function onEditTask() {
     setEdit(!edit);
   }
 
@@ -45,7 +45,13 @@ export function Task({ taskName, onDeleteTask, taskId }) {
           />
         </div>
       </div>
-      <EditTask active={edit} onEditTask={onEditTask} taskName={taskName} />
+      <EditTask
+        taskId={taskId}
+        active={edit}
+        onEditTask={onEditTask}
+        handleEditTask={handleEditTask}
+        taskName={taskName}
+      />
     </>
   );
 }
