@@ -1,8 +1,16 @@
 import { PaperPlaneTilt } from "@phosphor-icons/react";
 import { useState } from "react";
+import { Button } from "../Button";
 
-export function Form({ functionAddNewTask }) {
+export function Form({ onAddNewTask}) {
   const [newTaskName, setNewtaskName] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    onAddNewTask(newTaskName);
+    setNewtaskName("");
+  }
 
   function handleSetNewTaskName(event) {
     setNewtaskName(event.target.value);
@@ -10,7 +18,7 @@ export function Form({ functionAddNewTask }) {
   }
 
   return (
-    <form className="flex flex-col justify-center">
+    <form onSubmit={handleSubmit} className="flex flex-col justify-center">
       <div className="text-center">
         <label htmlFor="task-name">Nome da tarefa:</label>
         <input
@@ -18,18 +26,12 @@ export function Form({ functionAddNewTask }) {
           onChange={handleSetNewTaskName}
           type="text"
           id="task-name"
-          className="bg-[#242424] p-1 opacity-30 my-5 w-full rounded-md"
+          className="bg-[#3131314d] p-1 my-5 w-full rounded-md outline-none"
         />
       </div>
 
-      <button
-        onClick={() => functionAddNewTask(newTaskName)}
-        type="submit"
-        className="bg-green-600 text-[1rem] items-center flex justify-center gap-3 p-3 px-6 rounded-md duration-300 cursor-pointer hover:bg-green-500"
-      >
-        ADICIONAR
-        <PaperPlaneTilt size={20} />
-      </button>
+      <Button name={"ADICIONAR"} />
+        
     </form>
   );
 }

@@ -3,30 +3,43 @@ import { Container } from "./components/Container";
 import { Form } from "./components/Form";
 import { Task } from "./components/Task";
 
-
 function App() {
   const [tasks, setTasks] = useState([
-    {id:window.crypto.randomUUID(), name: "Comprar frutas" },
-    {id:window.crypto.randomUUID(), name: "Responder e-mails" },
-    {id:window.crypto.randomUUID(), name: "Estudar JavaScript" },
+    { id: window.crypto.randomUUID(), name: "Comprar frutas" },
+    { id: window.crypto.randomUUID(), name: "Responder e-mails" },
+    { id: window.crypto.randomUUID(), name: "Estudar JavaScript" },
   ]);
-  
-  function handleAddNewTask(taskName) {
-    setTasks(...tasks, { name: taskName });
+
+  function handleAddNewTask(taskId) {
+    const newTask = { id: window.crypto.randomUUID(), name: taskId };
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  }
+
+  function handleDeleteTask(taskId) {
+    const newTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(newTasks);
   }
 
   return (
     <main className="w-full h-full p-4">
       <h1 className="text-4xl text-center mt-6">TO-DO-LIST</h1>
       <Container>
-        <Form />
+        <Form onAddNewTask={handleAddNewTask} />
       </Container>
-
-      <Container>
-        {tasks.map(({ name, id }) => {
-          return <Task taskName={name} key={id} functionAddNewTask={handleAddNewTask} />;
-        })}
-      </Container>
+      {tasks.length > 0 ? (
+        <Container>
+          {tasks.map(({ name, id }) => {
+            return (
+              <Task
+                onDeleteTask={handleDeleteTask}
+                taskName={name}
+                key={id}
+                taskId={id}
+              />
+            );
+          })}
+        </Container>
+      ) : null}
     </main>
   );
 }
