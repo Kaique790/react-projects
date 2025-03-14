@@ -18,7 +18,7 @@ export function Form({ onAddNewTask}) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col justify-center">
+    <form onSubmit={handleSubmit} className="flex w-full flex-col justify-center">
       <div className="text-center">
         <label htmlFor="task-name">Nome da tarefa:</label>
         <input

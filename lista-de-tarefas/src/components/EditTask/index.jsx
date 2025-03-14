@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Button } from "../Button";
+import { SignOut } from "@phosphor-icons/react";
 
-export function EditTask({ active = true, taskName }) {
+export function EditTask({ active = true, taskName, onEditTask }) {
   const [newTaskName, setNewTaskName] = useState(taskName);
 
   function handleInputName(event) {
@@ -14,18 +15,24 @@ export function EditTask({ active = true, taskName }) {
         active ? null : "hidden"
       } bg-[#313131a8] h-full flex items-center justify-center w-full rounded-md absolute top-[50%] left-[50%] translate-[-50%]`}
     >
+
+
       <form className="max-w-80 bg-white p-8 rounded-md">
-        <label htmlFor="newName" className="text-[#323232]">Novo nome:</label>
+        <button className="ml-auto block" type="button" onClick={onEditTask}>
+         <SignOut size={40} className="text-[#323232] p-1 rounded-4xl cursor-pointer duration-300 hover:bg-[#32323233]"/>
+        </button>
+        <label htmlFor="newName" className="text-[#323232]">
+          Novo nome:
+        </label>
         <input
           value={newTaskName}
           onChange={handleInputName}
           type="text"
           id="newName"
-          className="bg-[#3131314d] p-1 my-5 w-full rounded-md text-white"
+          className="bg-[#3131314d] text-[#616161] font-normal p-1 my-5 w-full rounded-md"
         />
         <Button />
       </form>
     </div>
-
   );
 }

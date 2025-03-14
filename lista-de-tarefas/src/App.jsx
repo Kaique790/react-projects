@@ -20,6 +20,11 @@ function App() {
     setTasks(newTasks);
   }
 
+  function handleEditTask (taskId) {
+    const task = tasks.find((task) => task.id === taskId);
+
+  }
+
   return (
     <main className="w-full h-full p-4">
       <h1 className="text-4xl text-center mt-6">TO-DO-LIST</h1>

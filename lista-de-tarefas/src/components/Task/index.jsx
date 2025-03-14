@@ -10,7 +10,7 @@ export function Task({ taskName, onDeleteTask, taskId }) {
     setCompleted(!completed);
   }
 
-  function handleEditTask () {
+  function onEditTask () {
     setEdit(!edit);
   }
 
@@ -23,7 +23,7 @@ export function Task({ taskName, onDeleteTask, taskId }) {
       >
         <div className={`${completed ? "line-through" : null}`}>{taskName}</div>
         <div className="flex gap-4">
-          <button onClick={handleEditTask}>
+          <button onClick={onEditTask}>
             <PencilSimpleLine
               size={28}
               className="duration-300 cursor-pointer hover:text-emerald-600"
@@ -45,7 +45,7 @@ export function Task({ taskName, onDeleteTask, taskId }) {
           />
         </div>
       </div>
-      <EditTask active={edit} toggleForm={handleEditTask} />
+      <EditTask active={edit} onEditTask={onEditTask} taskName={taskName} />
     </>
   );
 }
