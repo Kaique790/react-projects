@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { CountdownContainer, Separator } from "./styles";
 import { differenceInSeconds } from "date-fns";
-import { CyclesContext } from "../..";
+import { CyclesContext } from "../../../../contexts/CyclesContext";
 
 export function Countdown() {
   const {
@@ -18,20 +18,26 @@ export function Countdown() {
 
     let interval: number;
 
-    interval = setInterval(() => {
-      const secondsDifference = differenceInSeconds(
-        new Date(),
-        activeCycle.startDate
-      );
+    if (activeCycle) {
+      interval = setInterval(() => {
+        const secondsDifference = differenceInSeconds(
+          new Date(),
+          activeCycle.startDate
+        );
 
-      if (secondsDifference >= totalSeconds) {
-        markCurrentAsFinished();
-        setSecondsPassed(totalSeconds);
-        clearInterval(interval);
-      } else {
-        setSecondsPassed(secondsDifference);
-      }
-    }, 1000);
+        if (secondsDifference >= totalSeconds) {
+          markCurrentAsFinished();
+          setSecondsPassed(totalSeconds);
+          clearInterval(interval);
+        } else {
+          setSecondsPassed(secondsDifference);
+        }
+      }, 1000);
+    } else {
+      setSecondsPassed(0);
+    }
+
+    return () => clearInterval(interval);
   }, [activeCycle, totalSeconds, markCurrentAsFinished, setSecondsPassed]);
 
   const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0;
@@ -45,6 +51,8 @@ export function Countdown() {
   useEffect(() => {
     if (activeCycle) {
       document.title = `${minutes}:${seconds}`;
+    } else {
+      document.title = "Pomodoro Timer";
     }
   }, [minutes, seconds, activeCycle]);
 
