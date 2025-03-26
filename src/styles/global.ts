@@ -25,4 +25,16 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
     }
 
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background-color: ${(props) => props.theme["gray-700"]};
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 99999px;
+        background-color: ${(props) => props.theme["green-500"]};
+    }
+
+
 `;

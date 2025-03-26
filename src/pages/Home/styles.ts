@@ -17,7 +17,7 @@ export const HomeContainer = styled.main`
   }
 
   form {
-    width: 100%;
+    max-width: 70rem;
 
     display: flex;
     flex-direction: column;
@@ -25,6 +25,10 @@ export const HomeContainer = styled.main`
     align-items: center;
     justify-content: center;
     gap: 3.5rem;
+
+    div {
+      width: 100%;
+    }
   }
 `;
 

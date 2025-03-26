@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useContext, useEffect } from "react";
 import { CountdownContainer, Separator } from "./styles";
 import { differenceInSeconds } from "date-fns";
+import { CyclesContext } from "../..";
 
 export function Countdown() {
+  const {
+    setSecondsPassed,
+    activeCycle,
+    markCurrentAsFinished,
+    amountSecondsPassed,
+  } = useContext(CyclesContext);
+
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0;
-  const [amountSecondPassed, setAmountSecondPassed] = useState(0);
 
   useEffect(() => {
     if (!activeCycle) return;
@@ -12,29 +19,34 @@ export function Countdown() {
     let interval: number;
 
     interval = setInterval(() => {
-      const differenceSecond = differenceInSeconds(
+      const secondsDifference = differenceInSeconds(
         new Date(),
         activeCycle.startDate
       );
 
-      if (differenceSecond >= totalSeconds) {
-        setCycles((state) =>
-          state.map((cycle) => {
-            if (cycle.id === activeCycleId) {
-              return { ...cycle, finishedDate: new Date() };
-            }
-            return cycle;
-          })
-        );
-        setAmountSecondPassed(0);
+      if (secondsDifference >= totalSeconds) {
+        markCurrentAsFinished();
+        setSecondsPassed(totalSeconds);
         clearInterval(interval);
       } else {
-        setAmountSecondPassed(differenceSecond);
+        setSecondsPassed(secondsDifference);
       }
     }, 1000);
+  }, [activeCycle, totalSeconds, markCurrentAsFinished, setSecondsPassed]);
 
-    return () => clearInterval(interval);
-  }, [activeCycle, totalSeconds]);
+  const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0;
+
+  const minutesAmount = Math.floor(currentSeconds / 60);
+  const secondsAmount = currentSeconds % 60;
+
+  const minutes = String(minutesAmount).padStart(2, "0");
+  const seconds = String(secondsAmount).padStart(2, "0");
+
+  useEffect(() => {
+    if (activeCycle) {
+      document.title = `${minutes}:${seconds}`;
+    }
+  }, [minutes, seconds, activeCycle]);
 
   return (
     <CountdownContainer>
