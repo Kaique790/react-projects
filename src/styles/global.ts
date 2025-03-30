@@ -11,5 +11,9 @@ export const GlobalStyles = createGlobalStyle`
     body {
         background-color:${(props) => props.theme.white};
         font-size: 1rem;
+        max-width: 100%;
+        height: 100dvh;
+        
+        overflow-x: hidden;
     }
 `;

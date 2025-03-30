@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 export const HeaderContainer = styled.div`
   width: 100%;
-  max-width: calc(1440px - 8.75rem);
+  max-width: calc(82rem - 8.75rem);
   margin: 0 auto;
   position: relative;
 
   nav {
     width: 100%;
     padding: 1.25rem;
+    padding-block: 2rem;
 
     display: flex;
     align-items: center;
