@@ -7,13 +7,14 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
         font-family: "Roboto", sans-serif;
     }
-
+    
     body {
         background-color:${(props) => props.theme.white};
-        font-size: 1rem;
         max-width: 100%;
-        height: 100dvh;
-        
+        height: calc(100dvh + 20rem);
         overflow-x: hidden;
+
+        font-size: 1rem;
+        line-height: 1.3;
     }
 `;

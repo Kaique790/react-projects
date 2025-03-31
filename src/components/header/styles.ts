@@ -37,14 +37,6 @@ export const HeaderContainer = styled.div`
         justify-content: center;
         gap: 0.25rem;
       }
-
-      & > div {
-        padding: 0.5rem;
-        border-radius: 0.375rem;
-
-        color: ${(props) => props.theme["yellow-700"]};
-        background-color: ${(props) => props.theme["yellow-200"]};
-      }
     }
   }
 `;

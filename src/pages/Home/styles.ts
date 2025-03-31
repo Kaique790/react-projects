@@ -19,4 +19,14 @@ export const CoffeeListContainer = styled.section`
     font-family: "Baloo 2";
     font-size: 2rem;
   }
+
+  ul {
+    width: 100%;
+    margin-top: 4rem;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 2rem;
+  }
 `;
