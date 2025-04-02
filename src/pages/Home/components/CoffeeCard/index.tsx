@@ -1,26 +1,39 @@
-import coffeeImage from "../../../../assets/coffee.svg";
 import { CoffeeCardItem } from "./styles";
-import { DynamicCart } from "../../../../components/DynamicCart";
+import { DynamicCartButton } from "../../../../components/DynamicCartButton";
 import { QuantityButton } from "../../../../components/QuantityButton";
 
-export function CoffeeCard() {
+interface CoffeecardProps {
+  pathImage: string;
+  coffeeName: string;
+  coffeeTypes: string[];
+  description: string;
+  princing: number;
+}
+
+export function CoffeeCard({
+  pathImage,
+  coffeeName,
+  coffeeTypes,
+  description,
+  princing,
+}: CoffeecardProps) {
   return (
     <CoffeeCardItem>
       <div>
-        <img src={coffeeImage} alt="Café Tradicional" />
+        <img src={pathImage} />
       </div>
-      <h4>TRADICIONAL</h4>
-      <h3>Expresso Tradicional</h3>
-      <p>O tradicional café com água quente e grãos moídos</p>
+      <h4>{coffeeName}</h4>
+      <h3>{coffeeTypes}</h3>
+      <p>O{description}</p>
 
       <footer>
         <div>
           <span>R$</span>
-          9.90
+          {princing}
         </div>
         <div>
           <QuantityButton />
-          <DynamicCart type="purple" />
+          <DynamicCartButton type="purple" />
         </div>
       </footer>
     </CoffeeCardItem>

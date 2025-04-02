@@ -1,6 +1,6 @@
 import { HeaderContainer } from "./styles";
 import logo from "./Logo.svg";
-import { DynamicCart } from "../DynamicCart";
+import { DynamicCartButton } from "../DynamicCartButton";
 import { MapPin } from "@phosphor-icons/react";
 
 export function Header() {
@@ -17,7 +17,7 @@ export function Header() {
               <MapPin weight="fill" size="1.2rem" />
               São Cristovão - SE
             </span>
-            <DynamicCart type="yellow" />
+            <DynamicCartButton type="yellow" />
           </div>
         </nav>
       </HeaderContainer>

@@ -5,7 +5,7 @@ interface DynamicCartProps {
   type: "yellow" | "purple";
 }
 
-export function DynamicCart({ type = "yellow" }: DynamicCartProps) {
+export function DynamicCartButton({ type = "yellow" }: DynamicCartProps) {
   return (
     <CartContainer cartType={type}>
       <ShoppingCart size="1.375rem" weight="fill" />

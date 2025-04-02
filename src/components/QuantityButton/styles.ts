@@ -13,13 +13,13 @@ export const ButtonContainer = styled.div`
   background-color: ${(props) => props.theme["light-gray-600"]};
   color: ${(props) => props.theme["gray-700"]};
 
-  &:not(button) {
+  svg {
     color: ${(props) => props.theme["purple-400"]};
     cursor: pointer;
+  }
 
-    &:hover {
-      color: ${(props) => props.theme["purple-700"]};
-    }
+  svg:hover {
+    color: ${(props) => props.theme["purple-700"]};
   }
 
   img {
