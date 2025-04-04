@@ -14,12 +14,10 @@ export function HeroSection() {
     <HeroContainer>
       <div>
         <div>
-          <h1>
-            Encontre o café perfeito <br /> para qualquer hora do dia
-          </h1>
+          <h1>Encontre o café perfeito para qualquer hora do dia</h1>
           <p>
-            Com o Coffee Delivery você recebe seu café onde estiver, a<br />{" "}
-            qualquer hora
+            Com o Coffee Delivery você recebe seu café onde estiver, a qualquer
+            hora
           </p>
 
           <ItemsContainer>

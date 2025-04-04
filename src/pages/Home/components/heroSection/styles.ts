@@ -8,6 +8,14 @@ export const HeroContainer = styled.section`
     justify-content: space-between;
     align-items: start;
 
+    gap: 2rem;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
     h1 {
       font-size: 3rem;
       font-family: "Baloo 2";
@@ -15,6 +23,14 @@ export const HeroContainer = styled.section`
       line-height: 1.3;
 
       color: ${(props) => props.theme["gray-700"]};
+
+      @media (max-width: 1156px) {
+        font-size: 2.5rem;
+      }
+
+      @media (max-width: 1024px) {
+        text-align: center;
+      }
     }
 
     h1 + p {
@@ -24,6 +40,10 @@ export const HeroContainer = styled.section`
       color: ${(props) => props.theme["gray-500"]};
 
       margin-top: 1rem;
+
+      @media (max-width: 1024px) {
+        text-align: center;
+      }
     }
 
     img {
@@ -38,6 +58,7 @@ export const ItemsContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   row-gap: 1.5rem;
+  justify-items: center;
 
   & > li {
     display: flex;

@@ -2,15 +2,18 @@ import { HeaderContainer } from "./styles";
 import logo from "./Logo.svg";
 import { DynamicCartButton } from "../DynamicCartButton";
 import { MapPin } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 export function Header() {
   return (
     <header>
       <HeaderContainer>
         <nav>
-          <div>
-            <img src={logo} />
-          </div>
+          <Link to="/">
+            <div>
+              <img src={logo} />
+            </div>
+          </Link>
 
           <div>
             <span>

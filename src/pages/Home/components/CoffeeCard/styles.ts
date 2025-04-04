@@ -19,19 +19,6 @@ export const CoffeeCardItem = styled.div`
     margin-top: -3.5rem;
   }
 
-  h4 {
-    color: ${(props) => props.theme["yellow-700"]};
-    background-color: ${(props) => props.theme["yellow-200"]};
-
-    font-size: 0.625rem;
-    font-weight: bold;
-    text-align: center;
-
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border-radius: 16rem;
-  }
-
   h3 {
     margin-top: 0.75rem;
 
@@ -79,5 +66,24 @@ export const CoffeeCardItem = styled.div`
 
       margin-right: 0.2rem;
     }
+  }
+`;
+
+export const TypesContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+
+  h4 {
+    color: ${(props) => props.theme["yellow-700"]};
+    background-color: ${(props) => props.theme["yellow-200"]};
+
+    font-size: 0.625rem;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 16rem;
   }
 `;

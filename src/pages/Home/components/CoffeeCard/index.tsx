@@ -1,4 +1,4 @@
-import { CoffeeCardItem } from "./styles";
+import { CoffeeCardItem, TypesContainer } from "./styles";
 import { DynamicCartButton } from "../../../../components/DynamicCartButton";
 import { QuantityButton } from "../../../../components/QuantityButton";
 
@@ -22,9 +22,15 @@ export function CoffeeCard({
       <div>
         <img src={pathImage} />
       </div>
-      <h4>{coffeeName}</h4>
-      <h3>{coffeeTypes}</h3>
-      <p>O{description}</p>
+
+      <TypesContainer>
+        {coffeeTypes.map((type) => {
+          return <h4>{type}</h4>;
+        })}
+      </TypesContainer>
+
+      <h3>{coffeeName}</h3>
+      <p>{description}</p>
 
       <footer>
         <div>

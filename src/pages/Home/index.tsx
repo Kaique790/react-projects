@@ -1,10 +1,14 @@
 import { CoffeeCard } from "./components/CoffeeCard";
 import { HeroSection } from "./components/HeroSection";
-import { CoffeeListContainer, HomeContainer } from "./styles";
+import { CoffeeListContainer } from "./styles";
+import data from "../../data.json";
+import { MainContainer } from "../../components/mainContainer";
+
+const coffeesList = data;
 
 export function Home() {
   return (
-    <HomeContainer>
+    <MainContainer>
       <div>
         <HeroSection />
 
@@ -12,21 +16,22 @@ export function Home() {
           <h2>Lista de cafés</h2>
 
           <ul>
-            <li>
-              <CoffeeCard />
-            </li>
-            <li>
-              <CoffeeCard />
-            </li>
-            <li>
-              <CoffeeCard />
-            </li>
-            <li>
-              <CoffeeCard />
-            </li>
+            {coffeesList.map((coffee) => {
+              return (
+                <li>
+                  <CoffeeCard
+                    coffeeName={coffee.coffeeName}
+                    coffeeTypes={coffee.coffeeTypes}
+                    description={coffee.description}
+                    pathImage={coffee.pathImage}
+                    princing={coffee.princing}
+                  />
+                </li>
+              );
+            })}
           </ul>
         </CoffeeListContainer>
       </div>
-    </HomeContainer>
+    </MainContainer>
   );
 }

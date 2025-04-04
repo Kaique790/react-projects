@@ -1,19 +1,14 @@
 import styled from "styled-components";
 
-export const HomeContainer = styled.main`
-  margin-block: 3rem;
-
-  & > div {
-    margin: 0 auto;
-    width: 100%;
-    max-width: calc(82rem - 8.75rem);
-
-    padding: 1.25rem;
-  }
-`;
-
 export const CoffeeListContainer = styled.section`
   margin-top: 4.25rem;
+
+  @media (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   h2 {
     font-family: "Baloo 2";
@@ -27,6 +22,15 @@ export const CoffeeListContainer = styled.section`
     display: flex;
     flex-wrap: wrap;
 
+    @media (max-width: 1024px) {
+      align-items: center;
+      justify-content: center;
+    }
+
     gap: 2rem;
+
+    li {
+      margin-top: 2rem;
+    }
   }
 `;
