@@ -58,7 +58,6 @@ export const ItemsContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   row-gap: 1.5rem;
-  justify-items: center;
 
   & > li {
     display: flex;
@@ -68,6 +67,10 @@ export const ItemsContainer = styled.ul`
     span {
       color: ${(props) => props.theme["gray-500"]};
     }
+  }
+
+  @media (max-width: 1024px) {
+    justify-items: center;
   }
 `;
 

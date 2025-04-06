@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { CoffeeCardAdded } from "../CoffeeCardAdded";
-import { CartCheckoutContainer } from "./styles";
+import { CartCheckoutContainer, PrincingsContainer } from "./styles";
 
 export function Cart() {
   return (
@@ -19,7 +20,7 @@ export function Cart() {
         </li>
       </ul>
 
-      <div>
+      <PrincingsContainer>
         <div>
           Total de itens
           <span>R$ 29,70</span>
@@ -32,10 +33,12 @@ export function Cart() {
           Total
           <span>R$ 33,20</span>
         </div>
-      </div>
+      </PrincingsContainer>
 
       <footer>
-        <button>Confirmar Pedido</button>
+        <Link to="/order-placed">
+          <button>Confirmar Pedido</button>
+        </Link>
       </footer>
     </CartCheckoutContainer>
   );

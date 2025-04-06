@@ -5,7 +5,7 @@ export const CartCheckoutContainer = styled.section`
   background-color: ${(props) => props.theme["light-gray-400"]};
 
   width: 100%;
-  max-width: 28rem;
+  max-width: 40%;
 
   border-radius: 0.375rem;
   border-top-right-radius: 2.75rem;
@@ -48,5 +48,29 @@ export const CartCheckoutContainer = styled.section`
         background-color: ${(props) => props.theme["yellow-700"]};
       }
     }
+  }
+
+  @media (max-width: 768px) {
+    min-width: 100%;
+  }
+`;
+
+export const PrincingsContainer = styled.section`
+  width: 100%;
+  display: grid;
+  row-gap: 0.75rem;
+
+  margin-top: 0.75rem;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 0.875rem !important;
+  }
+
+  div:last-child {
+    font-size: 1.25rem !important;
+    font-weight: bold;
   }
 `;

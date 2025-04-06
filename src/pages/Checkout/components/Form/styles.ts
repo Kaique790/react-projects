@@ -26,6 +26,19 @@ export const FormContainer = styled.section`
   flex-direction: column;
   gap: 0.75rem;
 
+  max-width: 62%;
+  min-width: 62%;
+
+  @media (max-width: 1087px) {
+    max-width: 100%;
+    flex-direction: row;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    flex-direction: column;
+  }
+
   & > div,
   & > form {
     background-color: ${(props) => props.theme["light-gray-400"]};
@@ -51,6 +64,12 @@ export const AdressForm = styled.form`
     column-gap: 0.75rem;
     row-gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr;
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+
     input,
     select {
       border: none;
@@ -102,11 +121,16 @@ export const AdressForm = styled.form`
 
 export const FormPaymentContainer = styled.form`
   & > div {
+    overflow: hidden;
     width: 100%;
 
     display: flex;
     justify-content: space-between;
     gap: 0.75rem;
+
+    @media (max-width: 1087px) {
+      flex-direction: column;
+    }
 
     div label {
       min-width: 13.125rem;
@@ -131,15 +155,27 @@ export const FormPaymentContainer = styled.form`
         font-size: 1.375rem;
         color: ${(props) => props.theme["purple-400"]};
       }
-    }
 
-    input[type="radio"] {
-      display: none;
+      @media (min-width: 1087px) and (max-width: 1300px) {
+        padding: 0.5rem;
+      }
     }
+  }
 
-    input[type="radio"]:checked + label {
-      border: 1px solid ${(props) => props.theme["purple-700"]};
-      background-color: ${(props) => props.theme["purple-200"]};
-    }
+  input[type="radio"] {
+    display: none;
+  }
+
+  input[type="radio"]:checked + label {
+    border: 1px solid ${(props) => props.theme["purple-700"]};
+    background-color: ${(props) => props.theme["purple-200"]};
+  }
+
+  @media (max-width: 1087px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: row;
   }
 `;
