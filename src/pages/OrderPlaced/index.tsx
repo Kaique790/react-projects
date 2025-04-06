@@ -1,39 +1,50 @@
 import { CurrencyDollar, MapPin, Timer } from "@phosphor-icons/react";
 import { MainContainer } from "../../components/mainContainer";
+import {
+  Border,
+  DollarItemOrder,
+  MapItemOrder,
+  OrderPlacedContainer,
+  TimerItemOrder,
+} from "./styles";
+
+import illustration from "./Illustration.svg";
 
 export function OrderPlaced() {
   return (
     <MainContainer>
-      <>
-        <section>
+      <OrderPlacedContainer>
+        <div>
           <h1>Uhu! Pedido confirmado</h1>
           <p>Agora é só aguardar que logo o café chegará até você</p>
-
           <aside>
+            <Border></Border>
             <ul>
               <li>
-                <span>
+                <MapItemOrder>
                   <MapPin weight="fill" />
-                </span>
-                Entrega em Rua João Daniel Martinelli, 102 <br />
-                Farrapos - Porto Alegre, RS
+                </MapItemOrder>
+                Entrega em Rua João Daniel Martinelli, 102 <br /> Farrapos -
+                Porto Alegre, RS
               </li>
               <li>
-                <span>
+                <TimerItemOrder>
                   <Timer weight="fill" />
-                </span>
-                Previsão de entrega <br /> <span>20 min - 30 min</span>
+                </TimerItemOrder>
+                Previsão de entrega <br /> 20 min - 30 min
               </li>
               <li>
-                <span>
+                <DollarItemOrder>
                   <CurrencyDollar weight="fill" />
-                </span>
-                Pagamento na entrega <br /> Cartão de Crédito
+                </DollarItemOrder>
+                Pagamento na entrega - Cartão de Crédito
               </li>
             </ul>
           </aside>
-        </section>
-      </>
+        </div>
+
+        <img src={illustration} alt="" />
+      </OrderPlacedContainer>
     </MainContainer>
   );
 }
