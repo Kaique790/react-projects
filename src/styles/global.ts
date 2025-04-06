@@ -22,5 +22,19 @@ export const GlobalStyles = createGlobalStyle`
         }
     }
 
+    ::-webkit-scrollbar {
+        width: 0.375rem;
+    }
 
+    ::-webkit-scrollbar-track {
+     background: ${(props) => props.theme["gray-300"]};
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: ${(props) => props.theme["gray-400"]};
+
+        &:hover {
+            background: ${(props) => props.theme["gray-600"]};
+        }
+    }
 `;

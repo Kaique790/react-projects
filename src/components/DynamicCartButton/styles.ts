@@ -22,9 +22,13 @@ interface CartTypeInterface {
   cartType: keyof typeof CART_TYPES;
 }
 
-export const CartContainer = styled.div<CartTypeInterface>`
+export const CartContainer = styled.button<CartTypeInterface>`
   padding: 0.5rem;
   border-radius: 0.375rem;
+
+  display: flex;
+
+  border: none;
 
   transition: all 0.3s;
   cursor: pointer;

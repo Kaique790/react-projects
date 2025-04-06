@@ -7,7 +7,7 @@ export const Container = styled.main`
   & > div {
     margin: 0 auto;
     width: 100%;
-    max-width: calc(82rem - 8.75rem);
+    max-width: 80rem;
 
     padding: 1.25rem;
   }

@@ -9,7 +9,6 @@ interface DynamicCartProps {
 export function DynamicCartButton({ type = "yellow" }: DynamicCartProps) {
   return (
     <Link to="/checkout">
-      {" "}
       <CartContainer cartType={type}>
         <ShoppingCart size="1.375rem" weight="fill" />
       </CartContainer>
