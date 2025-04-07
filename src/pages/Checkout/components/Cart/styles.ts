@@ -50,7 +50,7 @@ export const CartCheckoutContainer = styled.section`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1087px) {
     min-width: 100%;
   }
 `;

@@ -8,6 +8,8 @@ interface CoffeecardProps {
   coffeeTypes: string[];
   description: string;
   princing: number;
+  quantityAdded: number;
+  coffeeId: number;
 }
 
 export function CoffeeCard({
@@ -16,6 +18,8 @@ export function CoffeeCard({
   coffeeTypes,
   description,
   princing,
+  quantityAdded,
+  coffeeId,
 }: CoffeecardProps) {
   return (
     <CoffeeCardItem>
@@ -38,8 +42,8 @@ export function CoffeeCard({
           {princing}
         </div>
         <div>
-          <QuantityButton />
-          <DynamicCartButton type="purple" />
+          <QuantityButton quantityAdded={quantityAdded} coffeeId={coffeeId} />
+          <DynamicCartButton type="purple" coffeeId={coffeeId} />
         </div>
       </footer>
     </CoffeeCardItem>

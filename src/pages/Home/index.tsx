@@ -1,12 +1,13 @@
 import { CoffeeCard } from "./components/CoffeeCard";
 import { HeroSection } from "./components/HeroSection";
 import { CoffeeListContainer } from "./styles";
-import data from "../../data.json";
 import { MainContainer } from "../../components/mainContainer";
-
-const coffeesList = data;
+import { useContext } from "react";
+import { CoffeesContext } from "../../contexts/CoffeesContext";
 
 export function Home() {
+  const { coffees } = useContext(CoffeesContext);
+
   return (
     <MainContainer>
       <div>
@@ -16,7 +17,7 @@ export function Home() {
           <h2>Lista de cafés</h2>
 
           <ul>
-            {coffeesList.map((coffee) => {
+            {coffees.map((coffee) => {
               return (
                 <li>
                   <CoffeeCard
@@ -25,6 +26,9 @@ export function Home() {
                     description={coffee.description}
                     pathImage={coffee.pathImage}
                     princing={coffee.princing}
+                    quantityAdded={coffee.QuantityAdded}
+                    coffeeId={coffee.id}
+                    key={coffee.id}
                   />
                 </li>
               );

@@ -35,6 +35,7 @@ export const FormContainer = styled.section`
   }
 
   @media (max-width: 768px) {
+    min-width: 100%;
     max-width: 100%;
     flex-direction: column;
   }

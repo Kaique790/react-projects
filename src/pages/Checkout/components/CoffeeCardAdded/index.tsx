@@ -1,25 +1,42 @@
 import { Trash } from "@phosphor-icons/react";
 import { QuantityButton } from "../../../../components/QuantityButton";
-import img from "./Image (1).png";
 import { CartButtonsCardContainer, CoffeeCardAddedContainer } from "./styles";
+import { useContext } from "react";
+import { CoffeesContext } from "../../../../contexts/CoffeesContext";
 
-export function CoffeeCardAdded() {
+interface CoffeeCardAddedProps {
+  pathImage: string;
+  coffeeName: string;
+  princing: number;
+  quantityAdded: number;
+  coffeeId: number;
+}
+
+export function CoffeeCardAdded({
+  pathImage,
+  coffeeName,
+  princing,
+  quantityAdded,
+  coffeeId,
+}: CoffeeCardAddedProps) {
+  const { removeCoffeeItem } = useContext(CoffeesContext);
+
   return (
     <CoffeeCardAddedContainer>
-      <img src={img} alt="" />
+      <img src={pathImage} alt="" />
       <CartButtonsCardContainer>
         <div>
           <div>
-            <h4>Expresso Tradicional</h4>
+            <h4>{coffeeName}</h4>
           </div>
           <div>
-            <QuantityButton />
-            <button>
+            <QuantityButton coffeeId={coffeeId} quantityAdded={quantityAdded} />
+            <button onClick={() => removeCoffeeItem(coffeeId)}>
               <Trash size={16} /> Remover
             </button>
           </div>
         </div>
-        <span>R$ 9,90</span>
+        <span>{princing}</span>
       </CartButtonsCardContainer>
     </CoffeeCardAddedContainer>
   );

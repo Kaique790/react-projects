@@ -59,6 +59,10 @@ export const OrderPlacedContainer = styled.section`
   img {
     height: 21.5rem;
   }
+
+  @media (max-width: 980px) {
+    flex-direction: column;
+  }
 `;
 
 export const Border = styled.div`
