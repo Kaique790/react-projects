@@ -47,6 +47,11 @@ export const CartCheckoutContainer = styled.section`
       &:hover {
         background-color: ${(props) => props.theme["yellow-700"]};
       }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
     }
   }
 

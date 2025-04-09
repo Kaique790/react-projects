@@ -55,7 +55,9 @@ export function Cart() {
       </PrincingsContainer>
 
       <footer>
-        <button form="checkout-form">Confirmar Pedido</button>
+        <button form="checkout-form" disabled={coffeesInCart.length <= 0}>
+          Confirmar Pedido
+        </button>
       </footer>
     </CartCheckoutContainer>
   );
