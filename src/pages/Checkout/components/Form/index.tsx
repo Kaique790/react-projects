@@ -18,6 +18,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserInformationContext } from "../../../../contexts/UserInformationContext";
 
 const regexCep = /^\d{8}$|^\d{5}-\d{3}$/;
 
@@ -44,11 +46,31 @@ export function Form() {
   });
 
   const navigate = useNavigate();
+  const { handleNewUserInformations } = useContext(UserInformationContext);
+
+  function setNewInformations(d: CheckouFormType) {
+    const newInformations = {
+      address: {
+        road: d.road,
+        addressNumber: d.addressNumber,
+        city: d.city,
+        addressUF: d.adressUF,
+        neighborhood: d.neighborhood,
+      },
+
+      paymentType: d.payType,
+    };
+
+    handleNewUserInformations({ ...newInformations });
+  }
 
   return (
     <FormContainer
       id="checkout-form"
-      onSubmit={handleSubmit(() => navigate("/order-placed"))}
+      onSubmit={handleSubmit((d) => {
+        setNewInformations(d);
+        navigate("/order-placed");
+      })}
     >
       <AddressSection>
         <FormHeaderBase>

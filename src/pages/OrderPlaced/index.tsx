@@ -9,8 +9,22 @@ import {
 } from "./styles";
 
 import illustration from "./Illustration.svg";
+import { UserInformationContext } from "../../contexts/UserInformationContext";
+import { useContext } from "react";
 
 export function OrderPlaced() {
+  const { address, paymentType } = useContext(UserInformationContext);
+  const paymentInPtBr = () => {
+    switch (paymentType) {
+      case "credit":
+        return "Crédito";
+      case "debit":
+        return "Débito";
+      case "ticket":
+        return "Dinheiro";
+    }
+  };
+
   return (
     <MainContainer>
       <OrderPlacedContainer>
@@ -24,8 +38,8 @@ export function OrderPlaced() {
                 <MapItemOrder>
                   <MapPin weight="fill" />
                 </MapItemOrder>
-                Entrega em Rua João Daniel Martinelli, 102 <br /> Farrapos -
-                Porto Alegre, RS
+                Entrega em {address.road}, {address.addressNumber} <br />
+                {address.neighborhood} - {address.city}, {address.addressUF}
               </li>
               <li>
                 <TimerItemOrder>
@@ -37,7 +51,7 @@ export function OrderPlaced() {
                 <DollarItemOrder>
                   <CurrencyDollar weight="fill" />
                 </DollarItemOrder>
-                Pagamento na entrega - Cartão de Crédito
+                Pagamento na entrega - {paymentInPtBr()}
               </li>
             </ul>
           </aside>
