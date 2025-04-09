@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer } from "react";
+import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { CoffeesReducer } from "../reducers/coffees/reducer";
 
 export interface CoffeeItemInterface {
@@ -30,9 +30,28 @@ export const CoffeesContext = createContext({} as CoffeesContextInterface);
 const initialState = { coffees: coffeesJSON };
 
 export function CoffeesContextProvider({ children }: { children: ReactNode }) {
-  const [coffeesState, dispatch] = useReducer(CoffeesReducer, initialState);
+  const [coffeesState, dispatch] = useReducer(
+    CoffeesReducer,
+    initialState,
+    (initialState) => {
+      const stateJSON = localStorage.getItem(
+        "@coffee-project:coffees-state-1.0.0"
+      );
+
+      return stateJSON ? JSON.parse(stateJSON) : initialState;
+    }
+  );
 
   const { coffees } = coffeesState;
+
+  useEffect(() => {
+    const coffeesStateJSON = JSON.stringify(coffeesState);
+
+    localStorage.setItem(
+      "@coffee-project:coffees-state-1.0.0",
+      coffeesStateJSON
+    );
+  }, [coffeesState]);
 
   function increaseACoffeeItem(coffeeId: number) {
     dispatch(increaseACoffeeItemAction(coffeeId));

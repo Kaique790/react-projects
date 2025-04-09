@@ -21,13 +21,18 @@ export const FormPaymentHeader = styled(FormHeaderBase)`
   }
 `;
 
-export const FormContainer = styled.section`
+export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
 
   max-width: 62%;
   min-width: 62%;
+
+  .input-error,
+  label.input-error {
+    border-color: red;
+  }
 
   @media (max-width: 1087px) {
     max-width: 100%;
@@ -38,14 +43,6 @@ export const FormContainer = styled.section`
     min-width: 100%;
     max-width: 100%;
     flex-direction: column;
-  }
-
-  & > div,
-  & > form {
-    background-color: ${(props) => props.theme["light-gray-400"]};
-
-    padding: 2.5rem;
-    border-radius: 0.375rem;
   }
 
   p {
@@ -59,7 +56,11 @@ export const FormContainer = styled.section`
   }
 `;
 
-export const AdressForm = styled.form`
+export const AddressSection = styled.section`
+  background-color: ${(props) => props.theme["light-gray-400"]};
+
+  padding: 2.5rem;
+  border-radius: 0.375rem;
   div {
     display: grid;
     column-gap: 0.75rem;
@@ -94,18 +95,19 @@ export const AdressForm = styled.form`
       grid-row: 2;
       grid-column: span 4;
     }
-    input#adress-number,
-    input#adress-complement {
+    input#address-number,
+    input#address-complement {
       grid-row: 3;
     }
 
-    input#adress-complement {
+    input#address-complement {
       grid-column: span 3;
+      font-style: italic;
     }
 
     input#neighborhood,
     input#city,
-    #adress-uf {
+    #address-uf {
       grid-row: 4;
     }
 
@@ -113,14 +115,19 @@ export const AdressForm = styled.form`
       grid-column: span 2;
     }
 
-    #adress-uf {
+    #address-uf {
       width: 3.75rem;
       text-align: center;
     }
   }
 `;
 
-export const FormPaymentContainer = styled.form`
+export const PaymentSection = styled.section`
+  background-color: ${(props) => props.theme["light-gray-400"]};
+
+  padding: 2.5rem;
+  border-radius: 0.375rem;
+
   & > div {
     overflow: hidden;
     width: 100%;

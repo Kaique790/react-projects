@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { CoffeeCardAdded } from "../CoffeeCardAdded";
 import { CartCheckoutContainer, PrincingsContainer } from "./styles";
 import { useContext } from "react";
@@ -56,9 +55,7 @@ export function Cart() {
       </PrincingsContainer>
 
       <footer>
-        <Link to="/order-placed">
-          <button>Confirmar Pedido</button>
-        </Link>
+        <button form="checkout-form">Confirmar Pedido</button>
       </footer>
     </CartCheckoutContainer>
   );
