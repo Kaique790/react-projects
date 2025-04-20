@@ -23,6 +23,22 @@
       "category": "Educação",
       "price": 33.5,
       "createdAt": "2025-04-17T18:38:11.878Z"
+    },
+    {
+      "id": 4,
+      "description": "PC",
+      "type": "outcome",
+      "category": "Compras",
+      "price": 1970.5,
+      "createdAt": "2025-04-17T18:21:11.878Z"
+    },
+    {
+      "category": "Contas",
+      "price": 432,
+      "description": "Energia",
+      "type": "outcome",
+      "createdAt": "2025-04-18T19:25:19.636Z",
+      "id": 5
     }
   ]
 }
