@@ -27,3 +27,7 @@ body {
   font-family: var(--font-family);
   font-size: var(--text-size-base);
 }
+
+:focus {
+  outline: none;
+}
