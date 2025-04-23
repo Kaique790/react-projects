@@ -26,6 +26,9 @@
 body {
   font-family: var(--font-family);
   font-size: var(--text-size-base);
+
+  background: var(--color-base-background);
+  color: var(--color-base-text);
 }
 
 :focus {
