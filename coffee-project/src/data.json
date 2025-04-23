@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "coffeeName": "Americano",
+    "pathImage": "https://i.postimg.cc/zX815fjP/Type-Americano.png",
+    "coffeeTypes": ["tradicional"],
+    "description": "O tradicional café feito com água quente e grãos moídos",
+    "princing": 9.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 2,
+    "coffeeName": "Expresso Americano",
+    "pathImage": "https://i.postimg.cc/vBfpwR6s/Type-Expresso.png",
+    "coffeeTypes": ["tradicional"],
+    "description": "Expresso diluído, menos intenso que o tradicional",
+    "princing": 9.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 3,
+    "coffeeName": "Expresso Cremoso",
+    "pathImage": "https://i.postimg.cc/8CqqYkc4/Type-Expresso-Cremoso.png",
+    "coffeeTypes": ["tradicional"],
+    "description": "Café expresso tradicional com espuma cremosa",
+    "princing": 9.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 4,
+    "coffeeName": "Expresso Gelado",
+    "pathImage": "https://i.postimg.cc/PrynqkVf/Type-Caf-Gelado.png",
+    "coffeeTypes": ["tradicional"],
+    "description": "Bebida preparada com café expresso e cubos de gelo",
+    "princing": 9.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 5,
+    "coffeeName": "Café com Leite",
+    "pathImage": "https://i.postimg.cc/wMc8LK6V/Type-Caf-com-Leite.png",
+    "coffeeTypes": ["Tradicional", "com leite"],
+    "description": "Meio a meio de expresso tradicional com leite vaporizado",
+    "princing": 11.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 6,
+    "coffeeName": "Latte",
+    "pathImage": "https://i.postimg.cc/QNgR633g/Type-Latte.png",
+    "coffeeTypes": ["Tradicional", "com leite"],
+    "description": "Uma dose de café expresso com o dobro de leite e espuma cremosa",
+    "princing": 11.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 7,
+    "coffeeName": "Capuccino",
+    "pathImage": "https://i.postimg.cc/Gmpw8S6F/Type-Capuccino.png",
+    "coffeeTypes": ["Tradicional", "com leite"],
+    "description": "Bebida com canela feita de doses iguais de café, leite e espuma",
+    "princing": 11.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 8,
+    "coffeeName": "Macchiato",
+    "pathImage": "https://i.postimg.cc/BQqRkVSr/Type-Macchiato.png",
+    "coffeeTypes": ["Tradicional", "com leite"],
+    "description": "Café expresso misturado com um pouco de leite quente e espuma",
+    "princing": 11.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 9,
+    "coffeeName": "Mocaccino",
+    "pathImage": "https://i.postimg.cc/tC28jN7Y/Type-Mochaccino.png",
+    "coffeeTypes": ["Tradicional", "com leite"],
+    "description": "Café expresso com calda de chocolate, pouco leite e espuma",
+    "princing": 11.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 10,
+    "coffeeName": "Chocolate Quente",
+    "pathImage": "https://i.postimg.cc/YCyc1zwJ/Type-Chocolate-Quente.png",
+    "coffeeTypes": ["especial", "com leite"],
+    "description": "Bebida feita com chocolate dissolvido no leite quente e café",
+    "princing": 14.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 11,
+    "coffeeName": "Cubano",
+    "pathImage": "https://i.postimg.cc/1zgkMVm4/Type-Cubano.png",
+    "coffeeTypes": ["especial", "alcoólico", "gelado"],
+    "description": "Drink gelado de café expresso com rum, creme de leite e hortelã",
+    "princing": 14.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 12,
+    "coffeeName": "Havaiano",
+    "pathImage": "https://i.postimg.cc/902sWxGq/Type-Havaiano.png",
+    "coffeeTypes": ["especial"],
+    "description": "Bebida adocicada preparada com café e leite de coco",
+    "princing": 14.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 13,
+    "coffeeName": "Árabe",
+    "pathImage": "https://i.postimg.cc/T2rXZbrD/Type-rabe.png",
+    "coffeeTypes": ["especial"],
+    "description": "Bebida preparada com grãos de café árabe e especiarias",
+    "princing": 14.99,
+    "QuantityAdded": 0
+  },
+  {
+    "id": 14,
+    "coffeeName": "Irlandês",
+    "pathImage": "https://i.postimg.cc/nr1gMvkS/Type-Irland-s.png",
+    "coffeeTypes": ["especial", "alcoólico"],
+    "description": "Bebida a base de café, uísque irlandês, açúcar e chantilly",
+    "princing": 14.99,
+    "QuantityAdded": 0
+  }
+]
