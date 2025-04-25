@@ -5,8 +5,7 @@ import {
   faBuilding,
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import { ListItem } from "../ListItem";
+import { ListItem } from "../../../../components/ListItem";
 
 export function UserInformations() {
   return (
@@ -19,13 +18,15 @@ export function UserInformations() {
       <div className="flex flex-col justify-between w-full">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base-title text-2xl">Kaique Bezerra</h2>
-          <Link
-            to="https://github.com/Kaique790"
-            className="text-blue flex items-center gap-1 text-sm duration-100 hover:border-b-1  hover:border-b-blue"
+          <a
+            href="https://github.com/Kaique790"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue flex items-center gap-1 text-sm duration-100 hover:border-b-1 hover:border-b-blue"
           >
             GITHUB
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-          </Link>
+          </a>
         </div>
         <p className="text-base-text">
           Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu

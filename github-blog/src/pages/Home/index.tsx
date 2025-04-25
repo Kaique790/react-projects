@@ -3,11 +3,11 @@ import { UserInformations } from "./components/UserInformations";
 
 export function Home() {
   return (
-    <main className="mx-auto max-w-4xl ">
+    <main className="mx-auto max-w-4xl px-4 mb-20">
       <UserInformations />
 
       <section className="mt-14">
-        <header className="flex w-full justify-between">
+        <header className="w-full flex justify-between">
           <h4 className="text-base-title font text-size-lg">Publicações</h4>
           <span className="text-base-span text-size-md">6 pulicações</span>
         </header>
@@ -20,7 +20,7 @@ export function Home() {
           />
         </form>
 
-        <section className="mt-10">
+        <section className="grid gap-7 grid-cols-2 mt-10">
           <PostDescription />
         </section>
       </section>

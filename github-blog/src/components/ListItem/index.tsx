@@ -8,8 +8,8 @@ interface ListItemProps {
 
 export function ListItem({ icon, children }: ListItemProps) {
   return (
-    <li className="flex items-center gap-2 text-base-subtitle">
-      <FontAwesomeIcon className="text-base-label" icon={icon} />
+    <li className="flex items-center gap-2">
+      <FontAwesomeIcon className="text-base-label height-4" icon={icon} />
       {children}
     </li>
   );

@@ -23,12 +23,24 @@
   --text-size-2xl: 1.5rem;
 }
 
+* {
+  line-height: 1.6;
+}
+
 body {
   font-family: var(--font-family);
   font-size: var(--text-size-base);
 
   background: var(--color-base-background);
   color: var(--color-base-text);
+}
+
+.boxWithLimitedText {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Número de linhas antes do corte */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 :focus {
