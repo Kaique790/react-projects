@@ -29,9 +29,9 @@ export function Home() {
             return (
               <PostDescription
                 key={post.id}
-                createdAt={post.createdAt}
+                createdAt={post.created_at}
                 title={post.title}
-                url={post.url}
+                id={post.id}
               />
             );
           })}

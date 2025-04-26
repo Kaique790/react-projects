@@ -17,7 +17,7 @@ interface Post {
   url: string;
   id: number;
   title: string;
-  createdAt: string;
+  created_at: string;
   comments: number;
   body: string;
 
@@ -69,7 +69,7 @@ export function PostContextProvider({ children }: PostContextProviderProps) {
     const response = await api.get("/repos/kaique790/react-projects/issues");
     const posts = response.data;
     posts.map((post: Post) => {
-      const { id, title, body, url, createdAt, comments } = post;
+      const { id, title, body, url, created_at, comments } = post;
       const { login } = post.user;
       const newPost = {
         user: { login },
@@ -77,7 +77,7 @@ export function PostContextProvider({ children }: PostContextProviderProps) {
         title,
         body,
         url,
-        createdAt,
+        created_at,
         comments,
         login,
       };

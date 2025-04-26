@@ -8,9 +8,11 @@ import {
   faComment,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatDistance, subDays } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 interface PostInformationProps {
-  // createdAt: string;
+  createdAt: string;
   comments: number;
   url: string;
   login: string;
@@ -18,10 +20,16 @@ interface PostInformationProps {
 
 export default function PostInformation({
   comments,
-  // createdAt,
+  createdAt,
   login,
   url,
 }: PostInformationProps) {
+  const dateFormat = formatDistance(
+    subDays(new Date(createdAt), 1),
+    new Date(),
+    { addSuffix: true, locale: ptBR }
+  );
+
   return (
     <aside className="bg-base-profile flex flex-col gap-3 p-8 mt-[-6rem] rounded-md">
       <nav className="flex justify-between items-center text-blue ">
@@ -33,7 +41,7 @@ export default function PostInformation({
           Voltar
         </Link>
         <a
-          href="https://github.com/Kaique790"
+          href={url}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1 text-sm duration-100 border-b-1 border-transparent hover:border-b-blue"
@@ -46,9 +54,9 @@ export default function PostInformation({
         JavaScript data types and data structures
       </h1>
       <ul className="flex gap-4 text-base-span">
-        <ListItem icon={faGithub}>kaique790</ListItem>
-        <ListItem icon={faCalendarDay}>Há 1 dia</ListItem>
-        <ListItem icon={faComment}>5 comentários</ListItem>
+        <ListItem icon={faGithub}>{login}</ListItem>
+        <ListItem icon={faCalendarDay}>{dateFormat}</ListItem>
+        <ListItem icon={faComment}>{comments} comentários</ListItem>
       </ul>
     </aside>
   );

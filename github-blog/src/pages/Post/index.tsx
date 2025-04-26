@@ -12,11 +12,15 @@ export default function Post() {
   });
 
   if (!postProvided) return <h1>Post not found</h1>;
-  const {} = postProvided;
 
   return (
     <main className="mx-auto max-w-4xl px-4 mb-20">
-      <PostInformation />
+      <PostInformation
+        comments={postProvided.comments}
+        login={postProvided.user.login}
+        url={postProvided.url}
+        createdAt={postProvided.created_at}
+      />
       <article className="p-10 flex flex-col gap-5">
         <p>{id}</p>
 
