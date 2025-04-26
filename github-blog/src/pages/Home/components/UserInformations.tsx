@@ -6,8 +6,8 @@ import {
   faBuilding,
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
-import { ListItem } from "../../../../components/ListItem";
-import { PostContext } from "../../../../contexts/PostsContext";
+import { ListItem } from "../../../components/ListItem";
+import { PostContext } from "../../../contexts/PostsContext";
 
 export function UserInformations() {
   const { user } = useContext(PostContext);

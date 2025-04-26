@@ -1,5 +1,5 @@
-import logo from "../../assets/logo.svg";
-import bgPath from "../../assets/bg.svg";
+import logo from "../assets/logo.svg";
+import bgPath from "../assets/bg.svg";
 
 export function Header() {
   return (
