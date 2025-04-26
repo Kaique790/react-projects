@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 
 interface PostDescriptionProps {
-  id: number;
+  number: number;
   title: string;
   createdAt: string;
   body: string;
 }
 
 export default function PostDescription({
-  id,
+  number,
   createdAt,
   title,
   body,
@@ -23,10 +23,12 @@ export default function PostDescription({
   );
 
   return (
-    <Link to={`/post/${id}`}>
-      <article className="bg-base-post max-h-65 p-8 rounded-[0.625rem] flex flex-col gap-5">
+    <Link to={`/post/${number}`}>
+      <article className="bg-base-post max-h-65 md:h-55 p-8 rounded-[0.625rem] flex flex-col gap-5">
         <header className="flex items-start justify-between">
-          <h3 className="text-base-title text-size-xl">{title}</h3>
+          <h3 className="text-base-title text-size-xl overflow-hidden">
+            {title}
+          </h3>
           <span className="whitespace-nowrap mt-1">
             <time className="text-base-span text-size-lg">{dateFormat}</time>
           </span>

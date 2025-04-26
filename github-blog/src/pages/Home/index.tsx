@@ -5,13 +5,13 @@ import { UserInformations } from "./components/UserInformations";
 
 export function Home() {
   const [query, setQuery] = useState("");
+  const { fetchPosts } = useContext(PostContext);
 
-  const { fetchFilteredPosts } = useContext(PostContext);
   const { posts } = useContext(PostContext);
 
   function handleSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setQuery(() => event.target.value);
-    fetchFilteredPosts(query);
+    fetchPosts(event.target.value);
   }
 
   return (
@@ -43,10 +43,10 @@ export function Home() {
           {posts.map((post) => {
             return (
               <PostDescription
-                key={post.id}
+                key={post.number}
                 createdAt={post.created_at}
                 title={post.title}
-                id={post.id}
+                number={post.number}
                 body={post.body}
               />
             );

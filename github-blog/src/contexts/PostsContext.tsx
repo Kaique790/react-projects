@@ -13,9 +13,9 @@ interface User {
   company: string;
 }
 
-interface Post {
+export interface PostInterface {
   html_url: string;
-  id: number;
+  number: number;
   title: string;
   created_at: string;
   comments: number;
@@ -26,8 +26,8 @@ interface Post {
 
 interface PostContextType {
   user: User;
-  posts: Post[];
-  fetchFilteredPosts: (query: string) => Promise<void>;
+  posts: PostInterface[];
+  fetchPosts: (query?: string) => Promise<void>;
 }
 
 interface PostContextProviderProps {
@@ -47,7 +47,7 @@ export function PostContextProvider({ children }: PostContextProviderProps) {
     id: 0,
     login: "",
   });
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostInterface[]>([]);
 
   const fetchUser = useCallback(async () => {
     const response = await api.get("/users/kaique790");
@@ -67,54 +67,36 @@ export function PostContextProvider({ children }: PostContextProviderProps) {
     return;
   }, [setUser]);
 
-  const fetchPosts = useCallback(async () => {
-    const response = await api.get("/repos/kaique790/react-projects/issues");
-    const posts = response.data;
-    posts.map((post: Post) => {
-      const { id, title, body, html_url, created_at, comments } = post;
-      const { login } = post.user;
-      const newPost = {
-        user: { login },
-        id,
-        title,
-        body,
-        html_url,
-        created_at,
-        comments,
-        login,
-      };
-      setPosts((state) => [...state, newPost]);
-    });
-    return;
-  }, [setPosts]);
-
-  const fetchFilteredPosts = useCallback(async (query: string) => {
-    const formatQuery = query.replace(" ", "%20");
-    const response = await api.get(
-      `/search/issues?q=${formatQuery}%20repo:kaique790/react-projects`
-    );
-    const posts = response.data.items;
-
-    if (posts.length === 0) {
-      return setPosts([]);
-    }
-
-    posts.map((post: Post) => {
-      const { id, title, body, html_url, created_at, comments } = post;
-      const { login } = post.user;
-      const newPost = {
-        user: { login },
-        id,
-        title,
-        body,
-        html_url,
-        created_at,
-        comments,
-        login,
-      };
-      setPosts((state) => [...state, newPost]);
-    });
-  }, []);
+  const fetchPosts = useCallback(
+    async (query?: string) => {
+      const response = await api.get("/search/issues", {
+        params: {
+          q: query
+            ? `${query} repo:kaique790/react-projects`
+            : "repo:kaique790/react-projects",
+        },
+      });
+      const posts = response.data.items;
+      const newPosts = posts.map((post: PostInterface) => {
+        const { number, title, body, html_url, created_at, comments } = post;
+        const { login } = post.user;
+        const newPost = {
+          user: { login },
+          number,
+          title,
+          body,
+          html_url,
+          created_at,
+          comments,
+          login,
+        };
+        return newPost;
+      });
+      setPosts(newPosts);
+      return;
+    },
+    [setPosts]
+  );
 
   useEffect(() => {
     fetchUser();
@@ -122,7 +104,7 @@ export function PostContextProvider({ children }: PostContextProviderProps) {
   }, [fetchUser, fetchPosts]);
 
   return (
-    <PostContext.Provider value={{ user, posts, fetchFilteredPosts }}>
+    <PostContext.Provider value={{ user, posts, fetchPosts }}>
       {children}
     </PostContext.Provider>
   );

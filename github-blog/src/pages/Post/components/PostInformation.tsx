@@ -16,6 +16,7 @@ interface PostInformationProps {
   comments: number;
   html_url: string;
   login: string;
+  title: string;
 }
 
 export default function PostInformation({
@@ -23,6 +24,7 @@ export default function PostInformation({
   createdAt,
   login,
   html_url,
+  title,
 }: PostInformationProps) {
   const dateFormat = formatDistance(
     subDays(new Date(createdAt), 1),
@@ -50,9 +52,7 @@ export default function PostInformation({
           <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
         </a>
       </nav>
-      <h1 className="text-base-title text-size-2xl">
-        JavaScript data types and data structures
-      </h1>
+      <h1 className="text-base-title text-size-2xl">{title}</h1>
       <ul className="flex gap-4 text-base-span">
         <ListItem icon={faGithub}>{login}</ListItem>
         <ListItem icon={faCalendarDay}>{dateFormat}</ListItem>
