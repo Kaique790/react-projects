@@ -14,7 +14,7 @@ interface User {
 }
 
 interface Post {
-  url: string;
+  html_url: string;
   id: number;
   title: string;
   created_at: string;
@@ -27,6 +27,7 @@ interface Post {
 interface PostContextType {
   user: User;
   posts: Post[];
+  fetchFilteredPosts: (query: string) => Promise<void>;
 }
 
 interface PostContextProviderProps {
@@ -63,20 +64,21 @@ export function PostContextProvider({ children }: PostContextProviderProps) {
       followers,
       company,
     });
+    return;
   }, [setUser]);
 
   const fetchPosts = useCallback(async () => {
     const response = await api.get("/repos/kaique790/react-projects/issues");
     const posts = response.data;
     posts.map((post: Post) => {
-      const { id, title, body, url, created_at, comments } = post;
+      const { id, title, body, html_url, created_at, comments } = post;
       const { login } = post.user;
       const newPost = {
         user: { login },
         id,
         title,
         body,
-        url,
+        html_url,
         created_at,
         comments,
         login,
@@ -84,6 +86,34 @@ export function PostContextProvider({ children }: PostContextProviderProps) {
       setPosts((state) => [...state, newPost]);
     });
     return;
+  }, [setPosts]);
+
+  const fetchFilteredPosts = useCallback(async (query: string) => {
+    const formatQuery = query.replace(" ", "%20");
+    const response = await api.get(
+      `/search/issues?q=${formatQuery}%20repo:kaique790/react-projects`
+    );
+    const posts = response.data.items;
+
+    if (posts.length === 0) {
+      return setPosts([]);
+    }
+
+    posts.map((post: Post) => {
+      const { id, title, body, html_url, created_at, comments } = post;
+      const { login } = post.user;
+      const newPost = {
+        user: { login },
+        id,
+        title,
+        body,
+        html_url,
+        created_at,
+        comments,
+        login,
+      };
+      setPosts((state) => [...state, newPost]);
+    });
   }, []);
 
   useEffect(() => {
@@ -92,7 +122,7 @@ export function PostContextProvider({ children }: PostContextProviderProps) {
   }, [fetchUser, fetchPosts]);
 
   return (
-    <PostContext.Provider value={{ user, posts }}>
+    <PostContext.Provider value={{ user, posts, fetchFilteredPosts }}>
       {children}
     </PostContext.Provider>
   );

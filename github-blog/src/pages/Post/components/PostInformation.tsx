@@ -14,7 +14,7 @@ import { ptBR } from "date-fns/locale";
 interface PostInformationProps {
   createdAt: string;
   comments: number;
-  url: string;
+  html_url: string;
   login: string;
 }
 
@@ -22,7 +22,7 @@ export default function PostInformation({
   comments,
   createdAt,
   login,
-  url,
+  html_url,
 }: PostInformationProps) {
   const dateFormat = formatDistance(
     subDays(new Date(createdAt), 1),
@@ -41,7 +41,7 @@ export default function PostInformation({
           Voltar
         </Link>
         <a
-          href={url}
+          href={html_url}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1 text-sm duration-100 border-b-1 border-transparent hover:border-b-blue"

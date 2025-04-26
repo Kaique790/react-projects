@@ -19,7 +19,7 @@ export default function Post() {
       <PostInformation
         comments={postProvided.comments}
         login={postProvided.user.login}
-        url={postProvided.url}
+        html_url={postProvided.html_url}
         createdAt={postProvided.created_at}
       />
       <article className="p-10 flex flex-col gap-5">
