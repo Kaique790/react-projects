@@ -9,7 +9,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function PostInformation() {
+interface PostInformationProps {
+  // createdAt: string;
+  comments: number;
+  url: string;
+  login: string;
+}
+
+export default function PostInformation({
+  comments,
+  // createdAt,
+  login,
+  url,
+}: PostInformationProps) {
   return (
     <aside className="bg-base-profile flex flex-col gap-3 p-8 mt-[-6rem] rounded-md">
       <nav className="flex justify-between items-center text-blue ">

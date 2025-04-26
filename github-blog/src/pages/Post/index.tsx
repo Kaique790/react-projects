@@ -1,20 +1,24 @@
 import PostInformation from "./PostInformation";
 import codeSvg from "../../assets/code.svg";
+import { useContext } from "react";
+import { PostContext } from "../../contexts/PostsContext";
+import { useParams } from "react-router-dom";
 
 export default function Post() {
+  const { id } = useParams();
+  const { posts } = useContext(PostContext);
+  const postProvided = posts.find((post) => {
+    return post.id === Number(id);
+  });
+
+  if (!postProvided) return <h1>Post not found</h1>;
+  const {} = postProvided;
+
   return (
     <main className="mx-auto max-w-4xl px-4 mb-20">
       <PostInformation />
-
       <article className="p-10 flex flex-col gap-5">
-        <p>
-          Programming languages all have built-in data structures, but these
-          often differ from one language to another. This article attempts to
-          list the built-in data structures available in JavaScript and what
-          properties they have. These can be used to build other data
-          structures. Wherever possible, comparisons with other languages are
-          drawn.
-        </p>
+        <p>{id}</p>
 
         <section>
           <h3 className="underline text-blue">Dynamic Typing</h3>

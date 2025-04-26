@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { PostContext } from "../../contexts/PostsContext";
 import PostDescription from "./components/PostDescription";
 import { UserInformations } from "./components/UserInformations";
 
 export function Home() {
+  const { posts } = useContext(PostContext);
+
   return (
     <main className="mx-auto max-w-4xl px-4 mb-20">
       <UserInformations />
@@ -21,7 +25,16 @@ export function Home() {
         </form>
 
         <section className="grid gap-7 grid-cols-2 mt-10">
-          <PostDescription />
+          {posts.map((post) => {
+            return (
+              <PostDescription
+                key={post.id}
+                createdAt={post.createdAt}
+                title={post.title}
+                url={post.url}
+              />
+            );
+          })}
         </section>
       </section>
     </main>
