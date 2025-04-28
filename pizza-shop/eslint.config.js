@@ -18,9 +18,11 @@ export default tseslint.config(
     rules: {
       "simple-import-sort/imports": "error",
     },
-    parserOptions: {
-      sourceType: "module",
-      ecmaVersion: "latest",
+    languageOptions: {
+      parserOptions: {
+        sourceType: "module",
+        ecmaVersion: "latest",
+      },
     },
     plugins: {
       "react-hooks": reactHooks,

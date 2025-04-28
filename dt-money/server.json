@@ -39,6 +39,14 @@
       "type": "outcome",
       "createdAt": "2025-04-18T19:25:19.636Z",
       "id": 5
+    },
+    {
+      "category": "Contas",
+      "price": 345,
+      "description": "Energia",
+      "type": "outcome",
+      "createdAt": "2025-04-28T18:13:47.935Z",
+      "id": 6
     }
   ]
 }
