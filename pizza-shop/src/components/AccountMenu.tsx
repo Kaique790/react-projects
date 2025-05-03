@@ -12,7 +12,7 @@ import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 export function AccountMenu() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant="outline" className="flex-items flex gap-2 select-none">
           Pizza Shop
           <ChevronDown className="h-4 w-4" />
