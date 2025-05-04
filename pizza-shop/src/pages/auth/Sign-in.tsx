@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
@@ -43,7 +42,6 @@ export function SignIn() {
 
   return (
     <>
-      <Helmet title="Login" />
       <div className="p-8">
         <Button variant="outline" asChild className="absolute top-8 right-8">
           <Link to="/sign-up">Novo Estabelecimento</Link>
