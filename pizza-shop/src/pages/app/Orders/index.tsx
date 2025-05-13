@@ -8,8 +8,15 @@ import {
 import { Pagination } from "@/components/Pagination";
 import { OrderTableFilters } from "./components/OrderTableFilters";
 import { OrderTableRow } from "./components/OrderTableRow";
+import { useQuery } from "@tanstack/react-query";
+import { getOrders } from "@/api/get-orders";
 
 export function Orders() {
+  const { data: result } = useQuery({
+    queryKey: ["orders"],
+    queryFn: getOrders,
+  });
+
   return (
     <>
       <div className="flex flex-col gap-4">
@@ -33,9 +40,10 @@ export function Orders() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {Array.from({ length: 10 }).map((_, index) => (
-                  <OrderTableRow key={index} />
-                ))}
+                {result &&
+                  result.orders.map((order) => (
+                    <OrderTableRow key={order.orderId} order={order} />
+                  ))}
               </TableBody>
             </Table>
           </div>
