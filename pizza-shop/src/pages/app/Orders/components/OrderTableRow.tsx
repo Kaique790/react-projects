@@ -8,6 +8,10 @@ import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { OrderStatus } from "./OrderStatus";
 import { useState } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { cancelOrder } from "@/api/cancel-order";
+import { OrderData } from "@/api/get-orders";
+import { toast } from "sonner";
 
 interface OrderTableRowProps {
   order: {
@@ -21,6 +25,42 @@ interface OrderTableRowProps {
 
 export function OrderTableRow({ order }: OrderTableRowProps) {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const queryClient = useQueryClient();
+
+  const { mutateAsync: cancelOrderFn } = useMutation({
+    mutationFn: cancelOrder,
+    async onSuccess(_, { orderId }: { orderId: string }) {
+      handleCancelOrder(orderId);
+      toast.success("Pedido cancelado com sucesso!");
+    },
+    async onError() {
+      toast.error("Não foi possível cancelar o pedido!");
+    },
+  });
+
+  function handleCancelOrder(orderId: string) {
+    const ordersListCache = queryClient.getQueriesData<OrderData>({
+      queryKey: ["orders"],
+    });
+
+    ordersListCache.forEach(([cacheKey, cacheData]) => {
+      if (!cacheData) return;
+
+      queryClient.setQueryData<OrderData>(cacheKey, {
+        ...cacheData,
+        orders: cacheData.orders.map((order) => {
+          if (order.orderId === orderId) {
+            return {
+              ...order,
+              status: "canceled",
+            };
+          }
+
+          return order;
+        }),
+      });
+    });
+  }
 
   return (
     <TableRow>
@@ -61,7 +101,12 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
         </Button>
       </TableCell>
       <TableCell>
-        <Button variant="ghost" size="xs">
+        <Button
+          disabled={!["pending", "processing"].includes(order.status)}
+          onClick={() => cancelOrderFn({ orderId: order.orderId })}
+          variant="ghost"
+          size="xs"
+        >
           <X className="mr-2 h-3 w-3" />
           Cancelar
         </Button>
