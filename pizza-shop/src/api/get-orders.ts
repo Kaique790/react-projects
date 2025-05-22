@@ -7,7 +7,7 @@ interface GetOrdersQuery {
   status?: string | null;
 }
 
-interface OrderData {
+export interface OrderData {
   orders: {
     orderId: string;
     createdAt: "string";

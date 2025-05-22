@@ -67,6 +67,7 @@ export function OrderTableFilters() {
       prev.delete("orderId");
       prev.delete("customerName");
       prev.delete("status");
+      prev.set("page", "1");
 
       return prev;
     });
