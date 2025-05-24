@@ -20,11 +20,23 @@ import { useQuery } from "@tanstack/react-query";
 import { getDailyRevenueInPeriod } from "@/api/get-daily-revenue-in-period";
 import { Label } from "@/components/ui/label";
 import { DateRangerPicker } from "@/components/ui/date-ranger-picker";
+import { useState } from "react";
+import { subDays } from "date-fns";
+import { DateRange } from "react-day-picker";
 
 export function RevenueChart() {
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
+    from: subDays(new Date(), 7),
+    to: new Date(),
+  });
+
   const { data: revenueInPeriod } = useQuery({
-    queryKey: ["metrics", "daily-revenue-in-period"],
-    queryFn: getDailyRevenueInPeriod,
+    queryKey: ["metrics", "daily-revenue-in-period", dateRange],
+    queryFn: () =>
+      getDailyRevenueInPeriod({
+        from: dateRange?.from,
+        to: dateRange?.to,
+      }),
   });
 
   return (
@@ -39,7 +51,7 @@ export function RevenueChart() {
 
         <div className="flex items-center gap-3">
           <Label htmlFor="period">Período</Label>
-          <DateRangerPicker />
+          <DateRangerPicker date={dateRange} onDateChange={setDateRange} />
         </div>
       </CardHeader>
       <CardContent>
