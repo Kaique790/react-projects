@@ -41,11 +41,11 @@ export function DateRangerPicker({
             {date?.from ? (
               date.to ? (
                 <>
-                  {format(date.from, "LLL dd, y", { locale: ptBR })} -{" "}
-                  {format(date.to, "LLL dd, y", { locale: ptBR })}
+                  {format(date.from, "LLLL dd, y", { locale: ptBR })} -{" "}
+                  {format(date.to, "LLLL dd, y", { locale: ptBR })}
                 </>
               ) : (
-                format(date.from, "LLL dd, y", { locale: ptBR })
+                format(date.from, "LLLL dd, y", { locale: ptBR })
               )
             ) : (
               <span>Escolha uma data</span>

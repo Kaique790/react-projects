@@ -2,7 +2,7 @@ import { api } from "@/lib/axios";
 
 export type GetDailyRevenueInPeriodResponse = {
   date: string;
-  receipt: string;
+  receipt: number;
 }[];
 
 interface GetDailyRevenueInPeriodQuery {
