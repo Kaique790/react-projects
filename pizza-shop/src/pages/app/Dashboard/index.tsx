@@ -1,7 +1,7 @@
 import { MonthOrdersAmounthCard } from "./components/MonthOrdersAmountCard";
 import { MonthRevenueCard } from "./components/MonthRevenueCard";
 import { DayOrdersAmounthCard } from "./components/DayOrdersAmountCard";
-import { MonthCanceledOrdersAmounthCard } from "./components/MounthCanceledOrdersAmount";
+import { MonthCanceledOrdersAmounthCard } from "./components/MonthCanceledOrdersAmount";
 import { RevenueChart } from "./components/RevenueChart";
 import { PopularProductsChart } from "./components/PopularProductsChart";
 
