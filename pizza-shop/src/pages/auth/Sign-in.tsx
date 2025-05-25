@@ -51,6 +51,8 @@ export function SignIn() {
     }
   }
 
+  throw new Error("Not implemented");
+
   return (
     <>
       <div className="p-8">

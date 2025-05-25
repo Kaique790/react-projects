@@ -5,13 +5,14 @@ import { AppLayout } from "./pages/_layouts/AppLayout";
 import { AuthLayout } from "./pages/_layouts/AuthLayout";
 import { SignUp } from "./pages/auth/Sign-up";
 import { Orders } from "./pages/app/Orders";
-import { NotFound } from "./pages/app/404";
+import { NotFound } from "./pages/Errors/NotFound";
+import { Error } from "./pages/Errors/Error";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    errorElement: <NotFound />,
+    errorElement: <Error />,
     children: [
       { path: "/", element: <Dashboard /> },
       { path: "/orders", element: <Orders /> },
@@ -20,9 +21,14 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <AuthLayout />,
+    errorElement: <Error />,
     children: [
       { path: "/sign-in", element: <SignIn /> },
       { path: "/sign-up", element: <SignUp /> },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);
