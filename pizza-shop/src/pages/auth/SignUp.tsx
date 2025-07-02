@@ -40,7 +40,7 @@ export function SignUp() {
         email: data.email,
         managerName: data.managerName,
         phone: data.phone,
-        restuarantName: data.restaurantName,
+        restaurantName: data.restaurantName,
       });
 
       toast.success("Cadastrado com sucesso!", {
