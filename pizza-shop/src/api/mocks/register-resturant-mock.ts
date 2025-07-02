@@ -1,12 +1,12 @@
 import { http, HttpResponse } from "msw";
-import { registerRestaurantBody } from "../register-restaurant";
+import { RegisterRestaurantBody } from "../register-restaurant";
 
-export const registerRestaurantMock = http.post<never, registerRestaurantBody>(
+export const registerRestaurantMock = http.post<never, RegisterRestaurantBody>(
   "/restaurants",
   async ({ request }) => {
-    const { restuarantName } = await request.json();
+    const { restaurantName } = await request.json();
 
-    if (restuarantName === "Pizza Shop") {
+    if (restaurantName === "Pizza Shop") {
       return new HttpResponse(null, { status: 201 });
     }
 
