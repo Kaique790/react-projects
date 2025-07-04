@@ -131,7 +131,7 @@ export function StoreProfileDialog() {
           </DialogClose>
           <Button
             type="submit"
-            variant="success"
+            variant="outline"
             disabled={isSubmitting}
             className={`${isSubmitting ? "cursor-not-allowed opacity-70" : ""}`}
           >
