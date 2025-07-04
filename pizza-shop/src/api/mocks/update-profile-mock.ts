@@ -1,8 +1,8 @@
 import { http, HttpResponse } from "msw";
 import type { UpdateProfileBody } from "../update-profile";
 
-export const updateProfiletMock = http.post<never, UpdateProfileBody>(
-  "/restaurants",
+export const updateProfiletMock = http.put<never, UpdateProfileBody>(
+  "/profile",
   async ({ request }) => {
     const { name } = await request.json();
 
