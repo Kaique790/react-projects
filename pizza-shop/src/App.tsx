@@ -8,7 +8,7 @@ import { queryClient } from "./lib/react-query";
 
 export function App() {
   return (
-    <ThemeProvider storageKey="pizzashop-theme" defaultTheme="system">
+    <ThemeProvider storageKey="pizzashop-theme" defaultTheme="dark">
       <Toaster richColors />
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
