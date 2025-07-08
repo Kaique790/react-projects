@@ -1,46 +1,41 @@
-"use client";
-
 import { HomeContainer, Product } from "@/styles/pages/home";
 import Image from "next/image";
+import { stripe } from "@/lib/stripe";
+import Carousel from "@/components/Carrousel";
+import Stripe from "stripe";
 
-import "keen-slider/keen-slider.min.css";
-import { useKeenSlider } from "keen-slider/react";
+export const dynamic = "force-static";
+export const revalidate = 7200000; // 2 hours
 
-import camiseta1 from "@/assets/camisetas/1.png";
-import camiseta2 from "@/assets/camisetas/2.png";
-import camiseta3 from "@/assets/camisetas/3.png";
+export default async function Home() {
+  const productsData = await stripe.products.list({
+    expand: ["data.default_price"],
+  });
 
-export default function Home() {
-  const [keenSliderRef] = useKeenSlider({
-    slides: {
-      perView: 2.35,
-      spacing: 48,
-    },
+  const products = productsData.data.map((product) => {
+    const price = product.default_price as Stripe.Price;
+
+    return {
+      id: product.id,
+      name: product.name,
+      imageURL: product.images[0],
+      price: price.unit_amount,
+    };
   });
 
   return (
-    <HomeContainer ref={keenSliderRef} className="keen-slider">
-      <Product className="keen-slider__slide">
-        <Image src={camiseta1} alt="" width={520} height={480} />
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
-      <Product className="keen-slider__slide">
-        <Image src={camiseta2} alt="" width={520} height={480} />
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
-      <Product className="keen-slider__slide">
-        <Image src={camiseta3} alt="" width={520} height={480} />
-        <footer>
-          <strong>Camiseta X</strong>
-          <span>R$ 79,90</span>
-        </footer>
-      </Product>
+    <HomeContainer className="keen-slider">
+      <Carousel>
+        {products.map((product) => (
+          <Product key={product.id} className="keen-slider__slide">
+            <Image src={product.imageURL} alt="" width={520} height={480} />
+            <footer>
+              <strong>{product.name}</strong>
+              <span>{product.price && (product.price / 100).toFixed(2)}</span>
+            </footer>
+          </Product>
+        ))}
+      </Carousel>
     </HomeContainer>
   );
 }
