@@ -3,6 +3,7 @@ import Image from "next/image";
 import { stripe } from "@/lib/stripe";
 import Carousel from "@/components/Carrousel";
 import Stripe from "stripe";
+import Link from "next/link";
 
 export const dynamic = "force-static";
 export const revalidate = 7200000; // 2 hours
@@ -19,7 +20,12 @@ export default async function Home() {
       id: product.id,
       name: product.name,
       imageURL: product.images[0],
-      price: price.unit_amount,
+      price:
+        price.unit_amount &&
+        new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(price.unit_amount / 100),
     };
   });
 
@@ -27,13 +33,15 @@ export default async function Home() {
     <HomeContainer className="keen-slider">
       <Carousel>
         {products.map((product) => (
-          <Product key={product.id} className="keen-slider__slide">
-            <Image src={product.imageURL} alt="" width={520} height={480} />
-            <footer>
-              <strong>{product.name}</strong>
-              <span>{product.price && (product.price / 100).toFixed(2)}</span>
-            </footer>
-          </Product>
+          <Link href={`/product/${product.id}`} key={product.id} passHref>
+            <Product className="keen-slider__slide">
+              <Image src={product.imageURL} alt="" width={520} height={480} />
+              <footer>
+                <strong>{product.name}</strong>
+                <span>{product.price}</span>
+              </footer>
+            </Product>
+          </Link>
         ))}
       </Carousel>
     </HomeContainer>
