@@ -17,8 +17,7 @@ export default async function Home() {
     const price = product.default_price as Stripe.Price;
 
     return {
-      id: product.id,
-      name: product.name,
+      ...product,
       imageURL: product.images[0],
       price:
         price.unit_amount &&

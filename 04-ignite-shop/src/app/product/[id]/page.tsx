@@ -50,3 +50,13 @@ export default async function Product({ params }: ProductProps) {
     </ProductContainer>
   );
 }
+
+export async function generateStaticParams() {
+  const products = await stripe.products.list({ limit: 1 }); // ou um filtro seu
+
+  return products.data.map((product) => ({
+    id: product.id,
+  }));
+}
+
+export const revalidate = 7200000; // 2 hours
