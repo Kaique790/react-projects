@@ -32,7 +32,7 @@ export default async function Home() {
     <HomeContainer className="keen-slider">
       <Carousel>
         {products.map((product) => (
-          <Link href={`/product/${product.id}`} key={product.id} passHref>
+          <Link href={`/product/${product.id}`} key={product.id}>
             <Product className="keen-slider__slide">
               <Image src={product.imageURL} alt="" width={520} height={480} />
               <footer>

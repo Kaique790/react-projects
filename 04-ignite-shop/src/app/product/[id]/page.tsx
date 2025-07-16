@@ -7,14 +7,13 @@ import {
 import Image from "next/image";
 import Stripe from "stripe";
 
-type ProductProps = {
-  params: {
-    id: string;
-  };
-};
-
-export default async function Product({ params }: ProductProps) {
-  const productId = params.id;
+export default async function Product({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const resolvedParams = await params;
+  const productId = resolvedParams.id;
 
   const productData = await stripe.products.retrieve(productId, {
     expand: ["default_price"],
@@ -36,7 +35,13 @@ export default async function Product({ params }: ProductProps) {
   return (
     <ProductContainer>
       <ImageContainer>
-        <Image src={product.imageUrl} alt="" width={520} height={480} />
+        <Image
+          src={product.imageUrl}
+          alt={product.name}
+          width={520}
+          height={480}
+          priority
+        />
       </ImageContainer>
 
       <ProductDetails>
@@ -52,11 +57,11 @@ export default async function Product({ params }: ProductProps) {
 }
 
 export async function generateStaticParams() {
-  const products = await stripe.products.list({ limit: 1 }); // ou um filtro seu
+  const products = await stripe.products.list({ limit: 1 });
 
   return products.data.map((product) => ({
     id: product.id,
   }));
 }
 
-export const revalidate = 7200000; // 2 hours
+export const revalidate = 7200; // 2 hours
