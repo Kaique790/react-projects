@@ -7,7 +7,7 @@ export function Header() {
         <div>NextJS</div>
 
         <nav>
-          <ul className="flex items-center justify-center gap-2">
+          <ul className="flex items-center justify-center gap-4">
             <li>
               <Link href="/">Home</Link>
             </li>
