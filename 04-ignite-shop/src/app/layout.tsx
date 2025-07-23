@@ -34,7 +34,7 @@ export default function RootLayout({
       <body>
         <Container>
           <Header>
-            <Image src={logoImage.src} alt="" width={32} height={32} />
+            <Image src={logoImage.src} alt="" width={100} height={60} />
           </Header>
           {children}
         </Container>
