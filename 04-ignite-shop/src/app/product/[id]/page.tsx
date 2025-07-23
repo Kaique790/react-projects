@@ -8,6 +8,25 @@ import axios from "axios";
 import Image from "next/image";
 import Stripe from "stripe";
 import { BuyButton } from "./components/buyButton";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+
+  const productData = await stripe.products.retrieve(id, {});
+
+  const product = {
+    ...productData,
+  };
+
+  return {
+    title: `${product.name.split(" ")[0]} ${product.name.split(" ")[1]}`,
+  };
+}
 
 export default async function Product({
   params,

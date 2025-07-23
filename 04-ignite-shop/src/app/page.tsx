@@ -4,9 +4,14 @@ import { stripe } from "@/lib/stripe";
 import Carousel from "@/components/Carrousel";
 import Stripe from "stripe";
 import Link from "next/link";
+import { Metadata } from "next";
 
 export const dynamic = "force-static";
 export const revalidate = 7200000; // 2 hours
+
+export const metadata: Metadata = {
+  title: "04 - ignite shop",
+};
 
 export default async function Home() {
   const productsData = await stripe.products.list({
