@@ -4,8 +4,10 @@ import {
   ProductContainer,
   ProductDetails,
 } from "@/styles/pages/product";
+import axios from "axios";
 import Image from "next/image";
 import Stripe from "stripe";
+import { BuyButton } from "./components/buyButton";
 
 export default async function Product({
   params,
@@ -30,7 +32,22 @@ export default async function Product({
         style: "currency",
         currency: "BRL",
       }).format(price.unit_amount / 100),
+    defaultPriceId: price.id,
   };
+
+  async function handleBuyProduct() {
+    try {
+      const response = await axios.post("/api/checkout", {
+        priceId: product.defaultPriceId,
+      });
+
+      const { checkoutUrl } = response.data;
+      window.location.href = checkoutUrl;
+    } catch {
+      // Deveria usar ferramentas de observação (datadog, sentry, etc): observar os erros dos usuário
+      alert("Falha ao redicionar para o checout!");
+    }
+  }
 
   return (
     <ProductContainer>
@@ -50,7 +67,7 @@ export default async function Product({
 
         <p>{product.description}</p>
 
-        <button>Comprar agora</button>
+        <BuyButton priceId={product.defaultPriceId} />
       </ProductDetails>
     </ProductContainer>
   );

@@ -63,6 +63,9 @@ export const ProductDetails = styled("div", {
     cursor: "pointer",
     fontWeight: "bold",
     fontSize: "$md",
+    display: "flex",
+    alignItems: "center",
+    justifyItems: "center",
 
     "&:disabled": {
       opacity: 0.6,
