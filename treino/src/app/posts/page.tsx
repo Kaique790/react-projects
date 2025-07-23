@@ -12,7 +12,12 @@ interface PostsResponse {
 }
 
 export default async function page() {
-  const response = await fetch("https://dummyjson.com/posts");
+  const response = await fetch("https://dummyjson.com/posts", {
+    cache: "force-cache",
+    next: {
+      revalidate: 36000,
+    },
+  });
   const data: PostsResponse = await response.json();
 
   return (

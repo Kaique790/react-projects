@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { PostInterface } from "../page";
 
 export default async function PostDetails({
@@ -12,11 +12,14 @@ export default async function PostDetails({
 
   return (
     <div className="flex flex-col gap-4 mx-2 mt-8">
-      <div key={post.id} className="bg-gray-200 p-4 rounded-md">
-        <h2 className="font-bold">{post.title}</h2>
-        <hr className="my-2" />
-        <p>{post.body}</p>
-      </div>
+      <h2>Olá, sou post</h2>
+      <Suspense fallback={<h1>Sou carregamneto</h1>}>
+        <div key={post.id} className="bg-gray-200 p-4 rounded-md">
+          <h2 className="font-bold">{post.title}</h2>
+          <hr className="my-2" />
+          <p>{post.body}</p>
+        </div>
+      </Suspense>
     </div>
   );
 }
