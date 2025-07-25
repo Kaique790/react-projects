@@ -7,6 +7,7 @@ import logoImage from "@/assets/logo.svg";
 import { Container, Header } from "@/styles/pages/app";
 import { getCssText } from "@/styles";
 import Image from "next/image";
+import { Providers } from "./Providers";
 
 export default function RootLayout({
   children,
@@ -33,10 +34,12 @@ export default function RootLayout({
       </head>
       <body>
         <Container>
-          <Header>
-            <Image src={logoImage.src} alt="" width={100} height={60} />
-          </Header>
-          {children}
+          <Providers>
+            <Header>
+              <Image src={logoImage.src} alt="" width={100} height={60} />
+            </Header>
+            {children}
+          </Providers>
         </Container>
       </body>
     </html>
