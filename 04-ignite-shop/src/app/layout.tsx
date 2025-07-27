@@ -38,7 +38,7 @@ export default function RootLayout({
             <Header>
               <Image src={logoImage.src} alt="" width={100} height={60} />
             </Header>
-            {children}
+            <main>{children}</main>
           </Providers>
         </Container>
       </body>
