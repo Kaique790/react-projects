@@ -9,10 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
     "@ignite-ui/react": "^2.2.4",
+    "@ignite-ui/tokens": "^1.1.0",
     "next": "15.4.4",
+    "phosphor-react": "^1.4.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "react-hook-form": "^7.61.1",
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
