@@ -16,6 +16,6 @@ export const FormAnnotation = styled("div", {
   marginTop: "$2",
 
   [`> ${Text}`]: {
-    colo: "$gray400",
+    color: "#F87C63",
   },
 });
