@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ClientWrapper } from "@/components/client-wrapper";
 import { Roboto } from "next/font/google";
 import { getCssText } from "@ignite-ui/react";
+import { Providers } from "./Providers";
 
 export const metadata: Metadata = {
   title: "Ignite Call",
@@ -21,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={roboto.className}>
       <body>
-        <ClientWrapper>{children}</ClientWrapper>
+        <Providers>
+          <ClientWrapper>{children}</ClientWrapper>
+        </Providers>
       </body>
     </html>
   );
