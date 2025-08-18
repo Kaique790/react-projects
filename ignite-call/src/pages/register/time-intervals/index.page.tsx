@@ -15,7 +15,7 @@ import {
   IntervalInputs,
 } from "./styles";
 import { ArrowRight } from "phosphor-react";
-import { useFieldArray, useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { getWeekDays } from "@/utils/get-week-days";
 
 const defaultIntervals = [
@@ -31,6 +31,7 @@ const defaultIntervals = [
 export default function TimeIntervals() {
   const {
     register,
+    watch,
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -51,6 +52,8 @@ export default function TimeIntervals() {
     console.log(data);
   }
 
+  const intervals = watch("intervals");
+
   return (
     <Container>
       <Header>
@@ -68,7 +71,18 @@ export default function TimeIntervals() {
           {fields.map((field, index) => (
             <IntervalItem key={field.id}>
               <IntervalDay>
-                <Checkbox />
+                <Controller
+                  name={`intervals.${index}.enabled`}
+                  control={control}
+                  render={({ field }) => (
+                    <Checkbox
+                      onCheckedChange={(checked) => {
+                        field.onChange(checked === true);
+                      }}
+                      checked={field.value}
+                    />
+                  )}
+                />
                 <Text>{weekDays[field.weekDay]}</Text>
               </IntervalDay>
               <IntervalInputs>
@@ -77,6 +91,7 @@ export default function TimeIntervals() {
                   size="sm"
                   type="time"
                   step={60}
+                  disabled={intervals[index].enabled === false}
                   {...register(`intervals.${index}.startTime`)}
                 />
                 <TextInput
@@ -84,6 +99,7 @@ export default function TimeIntervals() {
                   size="sm"
                   type="time"
                   step={60}
+                  disabled={intervals[index].enabled === false}
                   {...register(`intervals.${index}.endTime`)}
                 />
               </IntervalInputs>
