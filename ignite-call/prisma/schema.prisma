@@ -15,6 +15,7 @@ model User {
   email          String?            @unique
   email_verified DateTime?          @map("email_verified")
   avatar_url     String?
+  bio            String?
   accounts       Account[]
   sessions       Session[]
   timeIntervals  UserTimeInterval[]
