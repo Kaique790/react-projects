@@ -22,6 +22,7 @@ import z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { convertTimeStringToMinutes } from "@/utils/convert-time-string-to-minutes";
 import { api } from "@/lib/axios";
+import { useRouter } from "next/router";
 
 const defaultIntervals = [
   { weekDay: 0, enabled: false, startTime: "08:00", endTime: "18:00" },
@@ -89,6 +90,8 @@ export default function TimeIntervals() {
     },
   });
 
+  const router = useRouter();
+
   const { fields } = useFieldArray({
     name: "intervals",
     control,
@@ -101,6 +104,7 @@ export default function TimeIntervals() {
     const { intervals } = data;
 
     await api.post("/users/time-intervals", { intervals });
+    await router.push("/register/update-profile");
   }
 
   return (
