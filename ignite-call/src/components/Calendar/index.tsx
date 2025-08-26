@@ -9,7 +9,17 @@ import {
 } from "./styles";
 import dayjs from "dayjs";
 import { getWeekDays } from "@/utils/get-week-days";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
+interface CalendarWeek {
+  week: number;
+  days: Array<{
+    date: dayjs.Dayjs;
+    disabled: boolean;
+  }>;
+}
+
+type CalendarWeeks = CalendarWeek[];
 
 export function Calendar() {
   const [currentDate, setCurrentDate] = useState(() => {
@@ -32,6 +42,66 @@ export function Calendar() {
   const currentYear = currentDate.format("YYYY");
 
   const shortWeekDays = getWeekDays({ short: true });
+
+  const calendarWeeks = useMemo(() => {
+    const daysInMonthArray = Array.from({
+      length: currentDate.daysInMonth(),
+    }).map((_, i) => {
+      return currentDate.set("date", i + 1);
+    });
+
+    const firstWeekDay = currentDate.get("day");
+
+    const previousMonthFillArray = Array.from({
+      length: firstWeekDay,
+    })
+      .map((_, i) => {
+        return currentDate.subtract(i + 1, "day");
+      })
+      .reverse();
+
+    const lastDayInCurrentMonth = currentDate.set(
+      "date",
+      currentDate.daysInMonth()
+    );
+    const lastWeekDay = lastDayInCurrentMonth.get("day");
+
+    const nextMonthFillArray = Array.from({
+      length: 7 - (lastWeekDay + 1),
+    }).map((_, i) => {
+      return lastDayInCurrentMonth.add(i + 1, "day");
+    });
+
+    const calendarDays = [
+      ...previousMonthFillArray.map((date) => {
+        return { date, disabled: true };
+      }),
+      ...daysInMonthArray.map((date) => {
+        return { date, disabled: false };
+      }),
+      ...nextMonthFillArray.map((date) => {
+        return { date, disabled: true };
+      }),
+    ];
+
+    const calendarWeek = calendarDays.reduce<CalendarWeeks>(
+      (weeks, _, i, original) => {
+        const isNewWeek = i % 7 === 0;
+
+        if (isNewWeek) {
+          weeks.push({
+            week: i / 7 + 1,
+            days: original.slice(i, i + 7),
+          });
+        }
+
+        return weeks;
+      },
+      []
+    );
+
+    return calendarWeek;
+  }, [currentDate]);
 
   return (
     <CalendarConatiner>
@@ -59,21 +129,17 @@ export function Calendar() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>
-              <CalendarDay>1</CalendarDay>
-            </th>
-            <th>
-              <CalendarDay>2</CalendarDay>
-            </th>
-            <th>
-              <CalendarDay>3</CalendarDay>
-            </th>
-          </tr>
+          {calendarWeeks.map(({ week, days }) => (
+            <tr key={week}>
+              {days.map(({ date, disabled }) => (
+                <td key={date.toString()}>
+                  <CalendarDay disabled={disabled}>
+                    {date.get("date")}
+                  </CalendarDay>
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </CalendarBody>
     </CalendarConatiner>
