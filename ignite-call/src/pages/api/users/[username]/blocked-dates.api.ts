@@ -44,5 +44,12 @@ export default async function Availability(
     );
   });
 
+  const blockedDatesRow = await prisma.$queryRaw`
+    SELECT * FROM schedulings S
+
+    WHERE S.user_id === ${user.id}
+    AND DATE_FORMAT(S.date, "%Y-%m") = ${`${year}-${month}`}
+  `
+
   return res.json({ blockedWeekDays });
 }
