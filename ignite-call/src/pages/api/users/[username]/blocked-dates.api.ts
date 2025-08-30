@@ -1,5 +1,4 @@
 import { prisma } from "@/lib/prisma";
-import dayjs from "dayjs";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function Availability(
@@ -47,9 +46,12 @@ export default async function Availability(
   const blockedDatesRow = await prisma.$queryRaw`
     SELECT * FROM schedulings S
 
-    WHERE S.user_id === ${user.id}
-    AND DATE_FORMAT(S.date, "%Y-%m") = ${`${year}-${month}`}
-  `
+    WHERE S.user_id = ${user.id}
+      AND DATE_FORMAT(S.date, "%Y-%m") = ${`${year}-${String(month).padStart(
+        2,
+        "0"
+      )}`}
+  `;
 
   return res.json({ blockedWeekDays });
 }

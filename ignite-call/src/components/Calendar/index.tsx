@@ -48,7 +48,7 @@ export function Calendar({ selectedDate, onDateSelected }: Calendar) {
       currentDate.get("month"),
     ],
     queryFn: async () => {
-      const response = await api.get(`/users/${username}/blocked-times`, {
+      const response = await api.get(`/users/${username}/blocked-dates`, {
         params: {
           month: currentDate.get("month"),
           year: currentDate.get("year"),
