@@ -1,6 +1,11 @@
 import { prisma } from "@/lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 
+type BlockedDate = {
+  date: number;
+  amount: number;
+  size: number;
+}[];
 export default async function Availability(
   req: NextApiRequest,
   res: NextApiResponse
@@ -43,15 +48,28 @@ export default async function Availability(
     );
   });
 
-  const blockedDatesRow = await prisma.$queryRaw`
-    SELECT * FROM schedulings S
+  const formatedMonth = String(month).padStart(2, "0");
+
+  const blockedDatesRow = await prisma.$queryRaw<BlockedDate>`
+    SELECT
+      EXTRACT(DAY FROM S.date) AS date,
+      COUNT(S.date) as amount,
+      ((UTI.time_end_in_minutes - UTI.time_start_in_minutes) / 60) AS size
+    FROM schedulings S
+
+    LEFT JOIN user_time_intervals UTI
+      ON UTI.week_day = WEEKDAY(DATE_ADD(S.date, INTERVAL 1 DAY))
 
     WHERE S.user_id = ${user.id}
-      AND DATE_FORMAT(S.date, "%Y-%m") = ${`${year}-${String(month).padStart(
-        2,
-        "0"
-      )}`}
+      AND DATE_FORMAT(S.date, "%Y-%m") = ${`${year}-${formatedMonth}`}
+    
+    GROUP BY EXTRACT(DAY FROM S.date),
+      ((UTI.time_end_in_minutes - UTI.time_start_in_minutes) / 60)
+
+    HAVING amount >= size
   `;
 
-  return res.json({ blockedWeekDays });
+  const blockedDates = blockedDatesRow.map((item) => Number(item.date));
+
+  return res.json({ blockedWeekDays, blockedDates });
 }
