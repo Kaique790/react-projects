@@ -5,13 +5,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { useForm } from "react-hook-form";
 import dayjs from "dayjs";
+import { api } from "@/lib/axios";
+import { useRouter } from "next/router";
 
 const confirmFormSchema = z.object({
   name: z
     .string()
     .min(3, { message: "O nome precisa ter pelo menos 3 letras" }),
-  email: z.string().email({ message: "Digite um e-mail válido" }),
-  observations: z.string().nullable(),
+  email: z.email({ message: "Digite um e-mail válido" }),
+  observation: z.string().nullable(),
 });
 
 interface ConfirmStepProps {
@@ -33,11 +35,29 @@ export default function ConfirmStep({
     resolver: zodResolver(confirmFormSchema),
   });
 
+  const router = useRouter();
+  const username = String(router.query.username);
+
   function handleCancelScheduling() {
     onSelectDateTime(null);
   }
 
-  function handleConfirmScheduling(data: ConfirmFormData) {}
+  async function handleConfirmScheduling(data: ConfirmFormData) {
+    const { name, email, observation } = data;
+
+    try {
+      await api.post(`/users/${username}/scheduling`, {
+        name,
+        email,
+        observation,
+        date: schedulingDate,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
+    onSelectDateTime(null);
+  }
 
   const describedDate = dayjs(schedulingDate).format("DD[ de ]MMMM[ de ]YYYY");
   const describedTime = dayjs(schedulingDate).format("HH:mm[h]");
@@ -72,7 +92,7 @@ export default function ConfirmStep({
       </label>
       <label>
         <Text size="sm">Observações</Text>
-        <TextInput as="input" {...register("observations")} />
+        <TextInput as="input" {...register("observation")} />
       </label>
 
       <FormActions>
