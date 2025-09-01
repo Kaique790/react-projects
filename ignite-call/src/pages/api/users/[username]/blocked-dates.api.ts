@@ -6,7 +6,7 @@ type BlockedDate = {
   amount: number;
   size: number;
 }[];
-export default async function Availability(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {

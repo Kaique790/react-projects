@@ -8,7 +8,7 @@ const updateProfileBodySchema = z.object({
   bio: z.string(),
 });
 
-export default async function timeIntervals(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
