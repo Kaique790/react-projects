@@ -30,11 +30,10 @@ interface BlockedTimes {
 type CalendarWeeks = CalendarWeek[];
 
 interface Calendar {
-  selectedDate: Date | null;
   onDateSelected: (date: Date) => void;
 }
 
-export function Calendar({ selectedDate, onDateSelected }: Calendar) {
+export function Calendar({ onDateSelected }: Calendar) {
   const [currentDate, setCurrentDate] = useState(() => {
     return dayjs().set("date", 1);
   });
