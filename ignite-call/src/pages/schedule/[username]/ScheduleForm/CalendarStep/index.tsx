@@ -7,7 +7,7 @@ import {
   TimePickerList,
 } from "./styles";
 import { useState } from "react";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import { api } from "@/lib/axios";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
@@ -52,7 +52,7 @@ export function CalendarStep({ onSelectDate }: CalendarStepProps) {
       .set("hour", hour)
       .startOf("hour")
       .toDate();
-      
+
     onSelectDate(dateWithTime);
   }
 
