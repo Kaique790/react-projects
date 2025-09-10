@@ -1,11 +1,32 @@
+import { api } from "@/data/api";
+import { Product } from "@/types/product";
+import { formatPrice } from "@/utils/format-price";
 import Image from "next/image";
 
-export default function ProductDetails() {
+interface ProductDetailsProsp {
+  params: {
+    slug: string;
+  };
+}
+
+async function getProduct(slug: string) {
+  const product = api<Product>(`/products/${slug}`, {
+    next: {
+      revalidate: 60 * 60 * 4, // 4 hours
+    },
+  });
+
+  return product;
+}
+
+export default async function ProductDetails({ params }: ProductDetailsProsp) {
+  const product = await getProduct(params.slug);
+
   return (
     <div className="relative grid max-h-[860px] grid-cols-3">
       <div className="col-span-2 overflow-hidden">
         <Image
-          src="/moletom-never-stop-learning.png"
+          src={product.image}
           alt=""
           width={1000}
           height={1000}
@@ -14,20 +35,18 @@ export default function ProductDetails() {
       </div>
 
       <div className="flex flex-col justify-center px-12">
-        <h1 className="text-3xl leading-tight font-bold">
-          Moletom Never Stop Learning
-        </h1>
+        <h1 className="text-3xl leading-tight font-bold">{product.title}</h1>
 
         <p className="m-2 leading-relaxed text-zinc-400">
-          Moletom fabricado com 88% de algodão e 12% de poliéster.
+          {product.description}
         </p>
 
         <div className="mt-8 flex items-center gap-3">
           <span className="inline-block rounded-full bg-violet-500 px-5 py-2.5 font-semibold">
-            R$ 129
+            {formatPrice(product.price, false)}
           </span>
           <span className="text-sm text-zinc-400">
-            Em 12x sem juros de R$ 10,75
+            Em 12x s/ juros de {formatPrice(product.price / 12, true)}
           </span>
         </div>
 
