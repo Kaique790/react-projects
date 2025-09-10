@@ -6,7 +6,11 @@ import Link from "next/link";
 import { formatPrice } from "@/utils/format-price";
 
 async function getFeaturedProducts() {
-  const products = api<Product[]>("/products/featured");
+  const products = api<Product[]>("/products/featured", {
+    next: {
+      revalidate: 60 * 60 * 4, // 4 hours
+    },
+  });
 
   return products;
 }
