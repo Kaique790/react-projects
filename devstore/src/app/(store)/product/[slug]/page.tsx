@@ -29,6 +29,17 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  const featuredProducts = await api<Product[]>("/products/featured");
+  const staticParams = featuredProducts.map((product) => {
+    {
+      product.slug;
+    }
+  });
+
+  return staticParams;
+}
+
 export default async function ProductDetails({ params }: ProductDetailsProsp) {
   const product = await getProduct(params.slug);
 
