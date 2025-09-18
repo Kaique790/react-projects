@@ -32,9 +32,9 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   const featuredProducts = await api<Product[]>("/products/featured");
   const staticParams = featuredProducts.map((product) => {
-    {
-      product.slug;
-    }
+    return {
+      slug: product.slug,
+    };
   });
 
   return staticParams;
