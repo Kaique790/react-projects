@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Search, ShoppingBag } from "lucide-react";
 import Image from "next/image";
+import { CartWidget } from "./cart-widget";
 
 export function Header() {
   return (
@@ -22,7 +23,7 @@ export function Header() {
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
           <ShoppingBag className="h-4 w-4" />
-          <span className="text-sm">carrinho (0)</span>
+          <CartWidget />
         </div>
 
         <div className="h-4 w-px bg-zinc-700" />
